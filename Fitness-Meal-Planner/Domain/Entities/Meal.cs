@@ -28,7 +28,9 @@ namespace Domain.Entities
         public decimal fat { get; init; }
         [Required]
         [MaxLength(500)]
-        public string ingredients { get init; }
-
+        public string ingredients { get; init; }
+        [Required]
+        [MaxLength(1000)]
+        public string recipe { get; init; }
     }
 }
