@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "3eaC8xx6iEXxeR/Llnlw7ipDHqqwXs5XVJ3BdfprLw4q8l4LMhh2DECBmcNhJXF0bfmedMLLkDH0rqpHBlxijg==",
+  "dgSpecHash": "3VzPHQwgSe6hahhKRgOK50oVv6UpAkEZwjJyvawnfcbPrd9E8g/wsuEEx3z2tO4VmztNCoSckY50ulrDjmKghQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Infrastructure\\Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\wikar\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

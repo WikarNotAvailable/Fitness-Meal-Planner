@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Entities
 {
+    //table containing meals
+
     [Table("Meals")]
     public record Meal : AuditableEntity
     {

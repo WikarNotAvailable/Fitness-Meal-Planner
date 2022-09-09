@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Common
 {
+    //general properties for any entity
     public abstract record AuditableEntity
     {
         public DateTime created { get; set; }
