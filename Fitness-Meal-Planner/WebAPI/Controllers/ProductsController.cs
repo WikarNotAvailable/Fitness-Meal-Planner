@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Wrappers;
 
 namespace WebAPI.Controllers
 {
@@ -8,7 +9,7 @@ namespace WebAPI.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("products")]
-    public class ProductsController
+    public class ProductsController : ControllerBase
     {
         private readonly IProductsService productsService;
         public ProductsController(IProductsService _productsService)
@@ -16,15 +17,16 @@ namespace WebAPI.Controllers
             productsService = _productsService;
         }
         [HttpGet]
-        public IEnumerable<ProductDto> GetAllProducts()
+        public async Task<IEnumerable<ProductDto>> GetAllProducts()
         {
-            var products = productsService.GetAllProducts();
+            var products = await productsService.GetAllProductsAsync();
             return products;
         }
         [HttpPost]
-        public void AddProduct(CreateProductDto newProduct)
+        public async Task<ActionResult> AddProduct(CreateProductDto newProduct)
         {
-            productsService.AddProduct(newProduct);
+            var product = await productsService.AddProductAsync(newProduct);
+            return Created($"/products.{product.id}", new Response<ProductDto>(product));     
         }
     }
 }

@@ -22,16 +22,16 @@ namespace Application.Services
             mapper = _mapper;
         }
 
-        public IEnumerable<ProductDto> GetAllProducts()
+        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
-            var products = repository.GetAllProducts();
+            var products = await repository.GetAllProductsAsync();
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
-        public void AddProduct(CreateProductDto newProduct)
+        public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct)
         {
             var product = mapper.Map<Product>(newProduct);
-            repository.AddProduct(product);
-
+            await repository.AddProductAsync(product);
+            return mapper.Map<ProductDto>(product);
         }
     }
 }

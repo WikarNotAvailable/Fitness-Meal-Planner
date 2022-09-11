@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,15 @@ namespace Infrastructure.Repositories
         {
             context = _context;
         }
-        public IEnumerable<Product> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return context.Products;
+            return await context.Products.ToListAsync();
         }
-        public void AddProduct(Product product)
+        public async Task AddProductAsync(Product product)
         {
-            product.created = DateTime.Now; 
-            context.Add(product);
-            context.SaveChanges();
-        }
-
-        
+            context.Products.Add(product);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
+        }       
     }
 }
