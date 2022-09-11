@@ -6,7 +6,7 @@ namespace WebAPI.Controllers
 {
     //First version of products' controller
     [ApiController]
-   // [ApiVersion("1.0")]
+    [ApiVersion("1.0")]
     [Route("products")]
     public class ProductsController
     {
@@ -20,6 +20,11 @@ namespace WebAPI.Controllers
         {
             var products = productsService.GetAllProducts();
             return products;
+        }
+        [HttpPost]
+        public void AddProduct(CreateProductDto newProduct)
+        {
+            productsService.AddProduct(newProduct);
         }
     }
 }

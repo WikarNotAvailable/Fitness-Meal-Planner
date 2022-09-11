@@ -11,5 +11,6 @@ namespace Application.Interfaces
     public interface IProductsService
     {
         IEnumerable<ProductDto> GetAllProducts();
+        void AddProduct(CreateProductDto newProduct);
     }
 }

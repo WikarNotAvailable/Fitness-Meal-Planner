@@ -14,9 +14,16 @@ namespace Infrastructure.Repositories
         {
             new Product("Protein Bar", 45, 195, 20.2m, 14.1m, 3.2m, "Exemplary Ingredients", "Exemplaty Description")
         };
+
+
+
         public IEnumerable<Product> GetAllProducts()
         {
             return products;
+        }
+        public void AddProduct(Product product)
+        {
+            products.Add(product);
         }
     }
 }

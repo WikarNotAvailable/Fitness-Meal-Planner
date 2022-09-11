@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     //interface for repository cotaining products
     public interface IProductsRepository
     {
-        IEnumerable<Product> GetAllProducts();     
+        IEnumerable<Product> GetAllProducts();
+        void AddProduct(Product product);
     }
 }

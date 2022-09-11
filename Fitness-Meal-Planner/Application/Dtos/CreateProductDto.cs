@@ -1,19 +1,15 @@
-﻿using Application.Mappings;
-using AutoMapper;
-using Domain.Entities;
+﻿using Domain.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Dtos
 {
-    // Dto for product requested by users
-    public record ProductDto 
+    // Dto for new added products
+    public record CreateProductDto 
     {
-        public Guid id { get; init; }
         public string name { get; init; }
         public int weightInGrams { get; init; }
         public decimal calories { get; init; }

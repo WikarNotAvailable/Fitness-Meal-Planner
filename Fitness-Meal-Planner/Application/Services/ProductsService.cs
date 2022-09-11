@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,12 @@ namespace Application.Services
         {
             var products = repository.GetAllProducts();
             return mapper.Map<IEnumerable<ProductDto>>(products);
+        }
+        public void AddProduct(CreateProductDto newProduct)
+        {
+            var product = mapper.Map<Product>(newProduct);
+            repository.AddProduct(product);
+
         }
     }
 }
