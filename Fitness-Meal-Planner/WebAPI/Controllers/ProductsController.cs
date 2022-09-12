@@ -22,6 +22,16 @@ namespace WebAPI.Controllers
             var products = await productsService.GetAllProductsAsync();
             return products;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(new Response<ProductDto>(product));
+        }
         [HttpPost]
         public async Task<ActionResult> AddProduct(CreateProductDto newProduct)
         {

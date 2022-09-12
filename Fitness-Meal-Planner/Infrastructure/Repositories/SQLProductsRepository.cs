@@ -26,6 +26,11 @@ namespace Infrastructure.Repositories
             context.Products.Add(product);
             await context.SaveChangesAsync();
             await Task.CompletedTask;
-        }       
+        }
+
+        public async Task<Product> GetProductByIdAsync(Guid _id)
+        {
+            return await context.Products.SingleOrDefaultAsync(x => x.id == _id);
+        }
     }
 }
