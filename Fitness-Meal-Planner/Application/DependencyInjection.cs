@@ -16,6 +16,7 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IMealsService, MealsService>();
             services.AddSingleton(AutoMapperConfig.Initialize());
 
             return services;

@@ -36,11 +36,11 @@ namespace Domain.Entities
         public string recipe { get; init; }
         public Meal() { }
         public Meal(string _name, int _weightInGrams, decimal _calories, decimal _protein,
-            decimal _carbohydrates, decimal _fat, string _ingredients) 
+            decimal _carbohydrates, decimal _fat, string _ingredients, string _recipe) 
         {
             id = Guid.NewGuid();
-            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients) = (_name, _weightInGrams, _calories, _protein,
-                _carbohydrates, _fat, _ingredients);
+            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, recipe) = (_name, _weightInGrams, _calories, _protein,
+                _carbohydrates, _fat, _ingredients, _recipe);
         }
     }
 }

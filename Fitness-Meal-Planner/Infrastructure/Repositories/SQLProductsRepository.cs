@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    // class working on sql database
+    // class working on sql database, more specifically on products table
     public class SQLProductsRepository : IProductsRepository
     {
         private readonly FitnessPlannerContext context;

@@ -14,6 +14,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IProductsRepository, SQLProductsRepository>();
+            services.AddScoped<IMealsRepository, SQLMealsRepository>();
             return services;
         }
     }
