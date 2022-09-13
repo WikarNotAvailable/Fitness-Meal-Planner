@@ -26,10 +26,10 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
         {
             var product = await productsService.GetProductByIdAsync(id);
+
             if (product == null)
-            {
                 return NotFound();
-            }
+
             return Ok(new Response<ProductDto>(product));
         }
         [HttpPost]
@@ -37,6 +37,18 @@ namespace WebAPI.Controllers
         {
             var product = await productsService.AddProductAsync(newProduct);
             return Created($"/products.{product.id}", new Response<ProductDto>(product));     
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateProduct (UpdateProductDto updatedProduct, Guid id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+
+            if (product == null)
+                return NotFound();
+
+            await productsService.UpdateProductAsync(updatedProduct, id);
+
+            return NoContent();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+    // class working on sql database
     public class SQLProductsRepository : IProductsRepository
     {
         private readonly FitnessPlannerContext context;
@@ -21,16 +22,22 @@ namespace Infrastructure.Repositories
         {
             return await context.Products.ToListAsync();
         }
+        public async Task<Product> GetProductByIdAsync(Guid _id)
+        {
+            return await context.Products.SingleOrDefaultAsync(x => x.id == _id);
+        }
         public async Task AddProductAsync(Product product)
         {
             context.Products.Add(product);
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-
-        public async Task<Product> GetProductByIdAsync(Guid _id)
+        
+        public async Task UpdateProductAsync(Product product)
         {
-            return await context.Products.SingleOrDefaultAsync(x => x.id == _id);
+            context.Products.Update(product);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
         }
     }
 }

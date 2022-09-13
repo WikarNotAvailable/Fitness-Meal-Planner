@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Mappings
 {
+    //class for the configuration of automapper
     public static class AutoMapperConfig
     {
         public static IMapper Initialize()
@@ -17,6 +18,7 @@ namespace Application.Mappings
                 cfg.CreateMap<Product, ProductDto>();
                 cfg.CreateMap<CreateProductDto, Product>().ConstructUsing(x => new Product(x.name, x.weightInGrams, x.calories, x.protein,
                     x.carbohydrates, x.fat, x.ingredients, x.description));
+                cfg.CreateMap<UpdateProductDto, Product>();
             })
             .CreateMapper();
     }

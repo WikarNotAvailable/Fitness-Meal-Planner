@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
+    //context class for the sql database
     public class FitnessPlannerContext : DbContext
     {
         public DbSet<Product> Products { get; set; }

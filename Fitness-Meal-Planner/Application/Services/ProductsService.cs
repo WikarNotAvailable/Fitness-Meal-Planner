@@ -34,10 +34,17 @@ namespace Application.Services
             return mapper.Map<ProductDto>(product);
         }
 
-        public async Task<ProductDto> GetProductByIdAsync(Guid _id)
+        public async Task<ProductDto> GetProductByIdAsync(Guid id)
         {
-            var product = await repository.GetProductByIdAsync(_id);
+            var product = await repository.GetProductByIdAsync(id);
             return mapper.Map<ProductDto>(product);
+        }
+
+        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id)
+        {
+            var existingProduct = await repository.GetProductByIdAsync(id);
+            var product = mapper.Map(updatedProduct, existingProduct);
+            await repository.UpdateProductAsync(product);
         }
     }
 }
