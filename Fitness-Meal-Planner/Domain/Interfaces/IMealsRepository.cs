@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     //interface for repository containing meals
     public interface IMealsRepository
     {
+        Task<IEnumerable<Meal>> GetAllMealsAsync();
         Task AddMealAsync(Meal meal);
     }
 }

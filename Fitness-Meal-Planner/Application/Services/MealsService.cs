@@ -21,11 +21,18 @@ namespace Application.Services
             mapper = _mapper;
             repository = _repository;
         }
+        public async Task<IEnumerable<MealDto>> GetAllMealsAsync()
+        {
+            var meals = await repository.GetAllMealsAsync();
+            return mapper.Map<IEnumerable<MealDto>>(meals);
+        }
         public async Task<MealDto> AddMealAsync(CreateMealDto newMeal)
         {
             var meal = mapper.Map<Meal>(newMeal);
             await repository.AddMealAsync(meal);
             return mapper.Map<MealDto>(meal);
         }
+
+     
     }
 }

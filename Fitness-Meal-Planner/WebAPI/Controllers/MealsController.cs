@@ -16,6 +16,11 @@ namespace WebAPI.Controllers
         {
             service = _service;
         }
+        [HttpGet]
+        public async Task<IEnumerable<MealDto>> GetAllMeals()
+        {
+            return await service.GetAllMealsAsync();
+        }
         [HttpPost]
         public async Task<ActionResult> AddMeal(CreateMealDto newMeal)
         {

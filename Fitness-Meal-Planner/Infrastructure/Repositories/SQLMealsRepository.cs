@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,10 @@ namespace Infrastructure.Repositories
         {
             context = _context;
         }
-
+        public async Task<IEnumerable<Meal>> GetAllMealsAsync()
+        {
+            return await context.Meals.ToListAsync();
+        }
         public async Task AddMealAsync(Meal meal)
         {
             context.Meals.Add(meal);

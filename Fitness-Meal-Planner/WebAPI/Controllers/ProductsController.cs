@@ -19,8 +19,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<ProductDto>> GetAllProducts()
         {
-            var products = await productsService.GetAllProductsAsync();
-            return products;
+            return await productsService.GetAllProductsAsync();
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
