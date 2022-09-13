@@ -7,22 +7,11 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using WebAPI.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<IProductsService, ProductsService>();
-builder.Services.AddScoped<IProductsRepository, SQLProductsRepository>();
-builder.Services.AddSingleton(AutoMapperConfig.Initialize());
-
-builder.Services.AddDbContext<FitnessPlannerContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("FitnessPlannerCS")));
+builder.InstallServicesInAssembly();
 
 var app = builder.Build();
 
