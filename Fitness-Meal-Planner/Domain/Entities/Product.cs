@@ -35,14 +35,8 @@ namespace Domain.Entities
             decimal _carbohydrates, decimal _fat, string _ingredients, string _description) 
         {
             id = Guid.NewGuid();
-            name = _name;
-            weightInGrams = _weight;
-            calories = _calories;
-            protein = _protein;
-            carbohydrates = _carbohydrates;
-            fat = _fat;
-            ingredients = _ingredients;
-            description = _description;
+            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, description) = (_name, _weight, _calories, _protein,
+                _carbohydrates, _fat, _ingredients, _description);
         }
     }
 }

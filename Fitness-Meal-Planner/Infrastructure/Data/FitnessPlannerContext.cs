@@ -13,6 +13,7 @@ namespace Infrastructure.Data
     public class FitnessPlannerContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Meal> Meals { get; set; }
         public FitnessPlannerContext(DbContextOptions options) : base(options) { }
         public async Task<int> SaveChangesAsync()
         {

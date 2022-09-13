@@ -34,5 +34,13 @@ namespace Domain.Entities
         [Required]
         [MaxLength(1000)]
         public string recipe { get; init; }
+        public Meal() { }
+        public Meal(string _name, int _weightInGrams, decimal _calories, decimal _protein,
+            decimal _carbohydrates, decimal _fat, string _ingredients) 
+        {
+            id = Guid.NewGuid();
+            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients) = (_name, _weightInGrams, _calories, _protein,
+                _carbohydrates, _fat, _ingredients);
+        }
     }
 }
