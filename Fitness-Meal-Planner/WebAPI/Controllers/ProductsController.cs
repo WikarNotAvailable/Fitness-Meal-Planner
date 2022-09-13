@@ -50,5 +50,16 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct (Guid id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+            if (product == null)
+                return NotFound();
+
+            await productsService.DeleteProductAsync(id);
+
+            return NoContent();
+        }
     }
 }

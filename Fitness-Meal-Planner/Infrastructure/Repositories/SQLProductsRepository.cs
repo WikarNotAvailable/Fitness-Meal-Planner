@@ -39,5 +39,12 @@ namespace Infrastructure.Repositories
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
+        public async Task DeleteProductAsync(Product product)
+        {
+            context.Products.Remove(product);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
+        }
     }
 }

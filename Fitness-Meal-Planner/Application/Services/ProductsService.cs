@@ -46,5 +46,11 @@ namespace Application.Services
             var product = mapper.Map(updatedProduct, existingProduct);
             await repository.UpdateProductAsync(product);
         }
+
+        public async Task DeleteProductAsync(Guid id)
+        {
+            var product = await repository.GetProductByIdAsync(id);
+            await repository.DeleteProductAsync(product);
+        }
     }
 }

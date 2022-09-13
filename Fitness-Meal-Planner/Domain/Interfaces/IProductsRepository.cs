@@ -14,5 +14,6 @@ namespace Domain.Interfaces
         Task<Product> GetProductByIdAsync(Guid _id);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);
+        Task DeleteProductAsync(Product product);
     }
 }

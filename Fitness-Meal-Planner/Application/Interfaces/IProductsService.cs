@@ -14,5 +14,6 @@ namespace Application.Interfaces
         Task <ProductDto> AddProductAsync(CreateProductDto newProduct);
         Task<ProductDto> GetProductByIdAsync(Guid id);
         Task UpdateProductAsync (UpdateProductDto updatedProduct, Guid id);
+        Task DeleteProductAsync (Guid id);
     }
 }
