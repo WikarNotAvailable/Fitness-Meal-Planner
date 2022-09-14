@@ -26,6 +26,11 @@ namespace Application.Services
             var meals = await repository.GetAllMealsAsync();
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
+        public async Task<MealDto> GetMealByIdAsync(Guid id)
+        {
+            var meal = await repository.GetMealById(id);
+            return mapper.Map<MealDto>(meal);
+        }
         public async Task<MealDto> AddMealAsync(CreateMealDto newMeal)
         {
             var meal = mapper.Map<Meal>(newMeal);
@@ -33,6 +38,6 @@ namespace Application.Services
             return mapper.Map<MealDto>(meal);
         }
 
-     
+    
     }
 }

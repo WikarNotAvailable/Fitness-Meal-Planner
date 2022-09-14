@@ -21,6 +21,16 @@ namespace WebAPI.Controllers
         {
             return await service.GetAllMealsAsync();
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MealDto>> GetMeal(Guid id)
+        {
+            var meal = await service.GetMealByIdAsync(id);
+
+            if (meal == null)
+                return NotFound();
+
+            return Ok(meal);
+        }
         [HttpPost]
         public async Task<ActionResult> AddMeal(CreateMealDto newMeal)
         {
