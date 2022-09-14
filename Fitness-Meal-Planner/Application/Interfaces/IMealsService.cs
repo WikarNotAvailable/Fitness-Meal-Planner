@@ -12,6 +12,7 @@ namespace Application.Interfaces
         Task<IEnumerable<MealDto>> GetAllMealsAsync();
         Task<MealDto> GetMealByIdAsync(Guid id);
         Task<MealDto> AddMealAsync(CreateMealDto newMeal);
-        
+        Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id);
+        Task DeleteMealAsync(Guid id);
     }
 }

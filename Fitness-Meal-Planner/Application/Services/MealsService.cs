@@ -28,7 +28,7 @@ namespace Application.Services
         }
         public async Task<MealDto> GetMealByIdAsync(Guid id)
         {
-            var meal = await repository.GetMealById(id);
+            var meal = await repository.GetMealByIdAsync(id);
             return mapper.Map<MealDto>(meal);
         }
         public async Task<MealDto> AddMealAsync(CreateMealDto newMeal)
@@ -38,6 +38,17 @@ namespace Application.Services
             return mapper.Map<MealDto>(meal);
         }
 
-    
+        public async Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id)
+        {
+            var existingMeal = await repository.GetMealByIdAsync(id);
+            var meal = mapper.Map(updatedMeal, existingMeal);
+            await repository.UpdateMealAsync(meal);
+        }
+
+        public async Task DeleteMealAsync(Guid id)
+        {
+            var meal = await repository.GetMealByIdAsync(id);
+            await repository.DeleteMealAsync(meal);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories
         {
             return await context.Meals.ToListAsync();
         }
-        public async Task<Meal> GetMealById(Guid _id)
+        public async Task<Meal> GetMealByIdAsync(Guid _id)
         {
             return await context.Meals.SingleOrDefaultAsync(x => x.id == _id);
         }
@@ -32,7 +32,17 @@ namespace Infrastructure.Repositories
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-
-   
+        public async Task UpdateMealAsync(Meal meal)
+        {
+            context.Meals.Update(meal);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
+        }
+        public async Task DeleteMealAsync(Meal meal)
+        {
+            context.Meals.Remove(meal);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
+        }
     }
 }

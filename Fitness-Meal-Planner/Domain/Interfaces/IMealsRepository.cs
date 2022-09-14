@@ -11,7 +11,9 @@ namespace Domain.Interfaces
     public interface IMealsRepository
     {
         Task<IEnumerable<Meal>> GetAllMealsAsync();
-        Task<Meal> GetMealById(Guid _id);
+        Task<Meal> GetMealByIdAsync(Guid _id);
         Task AddMealAsync(Meal meal);
+        Task UpdateMealAsync(Meal meal);
+        Task DeleteMealAsync(Meal meal);
     }
 }

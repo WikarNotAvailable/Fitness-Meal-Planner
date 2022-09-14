@@ -22,6 +22,7 @@ namespace Application.Mappings
                 cfg.CreateMap<Meal, MealDto>();
                 cfg.CreateMap<CreateMealDto, Meal>().ConstructUsing(x => new Meal(x.name, x.weightInGrams, x.calories, x.protein, x.carbohydrates,
                     x.fat, x.ingredients, x.recipe));
+                cfg.CreateMap<UpdateMealDto, Meal>();
             })
             .CreateMapper();
     }

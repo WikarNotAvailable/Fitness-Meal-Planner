@@ -46,7 +46,6 @@ namespace WebAPI.Controllers
                 return NotFound();
 
             await productsService.UpdateProductAsync(updatedProduct, id);
-
             return NoContent();
         }
         [HttpDelete("{id}")]
