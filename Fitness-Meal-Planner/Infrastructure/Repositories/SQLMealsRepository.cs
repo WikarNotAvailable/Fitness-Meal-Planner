@@ -22,6 +22,12 @@ namespace Infrastructure.Repositories
         {
             return await context.Meals.ToListAsync();
         }
+        public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize)
+        {
+            return await context.Meals.Skip((pageNumber-1) *pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
         public async Task<Meal> GetMealByIdAsync(Guid _id)
         {
             return await context.Meals.SingleOrDefaultAsync(x => x.id == _id);
@@ -44,5 +50,11 @@ namespace Infrastructure.Repositories
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+        public async Task<int> CountMealsAsync()
+        {
+            return await context.Meals.CountAsync();
+        }
+
+      
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Filters;
+using WebAPI.Helpers;
 using WebAPI.Wrappers;
 
 namespace WebAPI.Controllers
@@ -16,10 +18,21 @@ namespace WebAPI.Controllers
         {
             productsService = _productsService;
         }
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IEnumerable<ProductDto>> GetAllProducts()
         {
             return await productsService.GetAllProductsAsync();
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetPagedProducts([FromQuery] PaginationFilter paginationFilter)
+        {
+            var validPaginationFilter = new PaginationFilter(paginationFilter.pageNumber, paginationFilter.pageSize);
+
+            var products = await productsService.GetProductsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize);
+
+            var totalRecords = await productsService.CountProductsAsync();
+
+            return Ok(PaginationHelper.CreatePagedResponse(products, validPaginationFilter, totalRecords));
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)

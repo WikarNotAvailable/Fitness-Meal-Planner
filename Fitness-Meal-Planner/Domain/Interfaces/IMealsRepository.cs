@@ -11,9 +11,11 @@ namespace Domain.Interfaces
     public interface IMealsRepository
     {
         Task<IEnumerable<Meal>> GetAllMealsAsync();
+        Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize);
         Task<Meal> GetMealByIdAsync(Guid _id);
         Task AddMealAsync(Meal meal);
         Task UpdateMealAsync(Meal meal);
         Task DeleteMealAsync(Meal meal);
+        Task<int> CountMealsAsync();
     }
 }

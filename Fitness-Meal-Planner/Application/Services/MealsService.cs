@@ -26,6 +26,11 @@ namespace Application.Services
             var meals = await repository.GetAllMealsAsync();
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
+        public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize)
+        {
+            var meals = await repository.GetMealsPagedAsync(pageNumber, pageSize);
+            return mapper.Map<IEnumerable<MealDto>>(meals);
+        }
         public async Task<MealDto> GetMealByIdAsync(Guid id)
         {
             var meal = await repository.GetMealByIdAsync(id);
@@ -50,5 +55,11 @@ namespace Application.Services
             var meal = await repository.GetMealByIdAsync(id);
             await repository.DeleteMealAsync(meal);
         }
+        public async Task<int> CountMealsAsync()
+        {
+            return await repository.CountMealsAsync();
+        }
+
+       
     }
 }

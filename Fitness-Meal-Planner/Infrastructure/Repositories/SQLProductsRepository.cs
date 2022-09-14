@@ -22,6 +22,12 @@ namespace Infrastructure.Repositories
         {
             return await context.Products.ToListAsync();
         }
+        public async Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize)
+        {
+            return await context.Products.Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
         public async Task<Product> GetProductByIdAsync(Guid _id)
         {
             return await context.Products.SingleOrDefaultAsync(x => x.id == _id);
@@ -46,5 +52,11 @@ namespace Infrastructure.Repositories
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+        public async Task<int> CountProductsAsync()
+        {
+            return await context.Products.CountAsync();
+        }
+
+        
     }
 }

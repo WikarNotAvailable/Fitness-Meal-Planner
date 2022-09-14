@@ -10,10 +10,12 @@ namespace Application.Interfaces
     //interface for service working on products repository
     public interface IProductsService
     {
-        Task <IEnumerable<ProductDto>> GetAllProductsAsync();
-        Task <ProductDto> AddProductAsync(CreateProductDto newProduct);
+        Task<IEnumerable<ProductDto>> GetAllProductsAsync();
+        Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize);
+        Task<ProductDto> AddProductAsync(CreateProductDto newProduct);
         Task<ProductDto> GetProductByIdAsync(Guid id);
         Task UpdateProductAsync (UpdateProductDto updatedProduct, Guid id);
         Task DeleteProductAsync (Guid id);
+        Task<int> CountProductsAsync();
     }
 }

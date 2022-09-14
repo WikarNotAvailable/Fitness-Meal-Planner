@@ -27,6 +27,11 @@ namespace Application.Services
             var products = await repository.GetAllProductsAsync();
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
+        public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize)
+        {
+            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize);
+            return mapper.Map<IEnumerable<ProductDto>>(products);
+        }
         public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct)
         {
             var product = mapper.Map<Product>(newProduct);
@@ -51,6 +56,10 @@ namespace Application.Services
         {
             var product = await repository.GetProductByIdAsync(id);
             await repository.DeleteProductAsync(product);
+        }
+        public async Task<int> CountProductsAsync()
+        {
+            return await repository.CountProductsAsync();
         }
     }
 }

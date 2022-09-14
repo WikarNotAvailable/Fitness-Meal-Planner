@@ -11,9 +11,11 @@ namespace Domain.Interfaces
     public interface IProductsRepository
     {
         Task<IEnumerable<Product>> GetAllProductsAsync();
+        Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize);
         Task<Product> GetProductByIdAsync(Guid _id);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);
         Task DeleteProductAsync(Product product);
+        Task<int> CountProductsAsync();
     }
 }
