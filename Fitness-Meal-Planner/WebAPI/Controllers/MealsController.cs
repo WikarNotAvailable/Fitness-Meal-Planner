@@ -1,5 +1,6 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
+using Domain.Additional_Structures;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Filters;
 using WebAPI.Helpers;
@@ -24,11 +25,19 @@ namespace WebAPI.Controllers
             return await mealsService.GetAllMealsAsync();
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter)
+        public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter,
+            [FromQuery] NutritionValuesFilter nutritionValuesFilter)
         {
+            if (!nutritionValuesFilter.ValidFilterValues())
+                return BadRequest("Invalid range of nutrition values");
+
+            var nutritionRange = new NutritionRange(nutritionValuesFilter.minCalories, nutritionValuesFilter.maxCalories,
+                nutritionValuesFilter.minProtein, nutritionValuesFilter.maxProtein, nutritionValuesFilter.minCarbohydrates,
+                nutritionValuesFilter.maxCarbohydrates, nutritionValuesFilter.minFat, nutritionValuesFilter.maxFat);
+
             var validPaginationFilter = new PaginationFilter(paginationFilter.pageNumber, paginationFilter.pageSize);
 
-            var meals = await mealsService.GetMealsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize);
+            var meals = await mealsService.GetMealsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize, nutritionRange);
 
             var totalRecords = await mealsService.CountMealsAsync();
 

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Additional_Structures;
+using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -22,11 +23,16 @@ namespace Infrastructure.Repositories
         {
             return await context.Meals.ToListAsync();
         }
-        public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
         {
-            return await context.Meals.Skip((pageNumber-1) *pageSize)
+            return await context.Meals
+                .Where(m => m.calories <= range.maxCalories && m.calories >= range.minCalories && m.protein <= range.maxProtein &&
+                    m.protein >= range.minProtein && m.carbohydrates >= range.minCarbohydrates && m.carbohydrates <= range.maxCarbohydrates &&
+                    m.fat >= range.minFat && m.fat <= range.maxFat)
+                .Skip((pageNumber-1) *pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
         }
         public async Task<Meal> GetMealByIdAsync(Guid _id)
         {

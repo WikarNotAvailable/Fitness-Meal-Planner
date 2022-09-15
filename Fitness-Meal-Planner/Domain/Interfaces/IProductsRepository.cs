@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Additional_Structures;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Domain.Interfaces
     public interface IProductsRepository
     {
         Task<IEnumerable<Product>> GetAllProductsAsync();
-        Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
         Task<Product> GetProductByIdAsync(Guid _id);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);

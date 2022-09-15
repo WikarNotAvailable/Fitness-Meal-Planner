@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Additional_Structures;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Domain.Interfaces
     public interface IMealsRepository
     {
         Task<IEnumerable<Meal>> GetAllMealsAsync();
-        Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
         Task<Meal> GetMealByIdAsync(Guid _id);
         Task AddMealAsync(Meal meal);
         Task UpdateMealAsync(Meal meal);

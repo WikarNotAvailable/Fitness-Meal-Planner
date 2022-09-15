@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using AutoMapper;
+using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -27,9 +28,9 @@ namespace Application.Services
             var products = await repository.GetAllProductsAsync();
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
-        public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
         {
-            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize);
+            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize, range);
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
         public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct)

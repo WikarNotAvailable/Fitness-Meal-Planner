@@ -1,4 +1,5 @@
 ﻿using Application.Dtos;
+using Domain.Additional_Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Application.Interfaces
     public interface IMealsService
     {
         Task<IEnumerable<MealDto>> GetAllMealsAsync();
-        Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
         Task<MealDto> GetMealByIdAsync(Guid id);
         Task<MealDto> AddMealAsync(CreateMealDto newMeal);
         Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id);

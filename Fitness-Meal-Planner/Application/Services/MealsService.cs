@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using AutoMapper;
+using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -26,9 +27,9 @@ namespace Application.Services
             var meals = await repository.GetAllMealsAsync();
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
-        public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
         {
-            var meals = await repository.GetMealsPagedAsync(pageNumber, pageSize);
+            var meals = await repository.GetMealsPagedAsync(pageNumber, pageSize, range);
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
         public async Task<MealDto> GetMealByIdAsync(Guid id)
