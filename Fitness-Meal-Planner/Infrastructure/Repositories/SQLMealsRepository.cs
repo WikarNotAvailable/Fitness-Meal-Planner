@@ -25,13 +25,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
         {
-            return await context.Meals
+            var meals = context.Meals
                 .Where(m => m.calories <= range.maxCalories && m.calories >= range.minCalories && m.protein <= range.maxProtein &&
                     m.protein >= range.minProtein && m.carbohydrates >= range.minCarbohydrates && m.carbohydrates <= range.maxCarbohydrates &&
                     m.fat >= range.minFat && m.fat <= range.maxFat)
-                .Skip((pageNumber-1) *pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            SearchByName(ref meals, range.name);
+
+            return await meals.ToListAsync();
 
         }
         public async Task<Meal> GetMealByIdAsync(Guid _id)
@@ -60,7 +63,12 @@ namespace Infrastructure.Repositories
         {
             return await context.Meals.CountAsync();
         }
+        private void SearchByName(ref IQueryable<Meal> meals, string nameOfMeal) 
+        {
+            if (!meals.Any() || string.IsNullOrWhiteSpace(nameOfMeal))
+                return;
 
-      
+            meals = meals.Where(m => m.name.ToLower().Contains(nameOfMeal.Trim().ToLower()));
+        }
     }
 }

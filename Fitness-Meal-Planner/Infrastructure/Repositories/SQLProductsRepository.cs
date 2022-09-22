@@ -25,13 +25,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
         {
-            return await context.Products
+            var products = context.Products
                 .Where(m => m.calories <= range.maxCalories && m.calories >= range.minCalories && m.protein <= range.maxProtein &&
                     m.protein >= range.minProtein && m.carbohydrates >= range.minCarbohydrates && m.carbohydrates <= range.maxCarbohydrates &&
                     m.fat >= range.minFat && m.fat <= range.maxFat)
                 .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                .Take(pageSize);
+
+            SearchByName(ref products, range.name);
+
+            return await products.ToListAsync();           
         }
         public async Task<Product> GetProductByIdAsync(Guid _id)
         {
@@ -61,7 +64,13 @@ namespace Infrastructure.Repositories
         {
             return await context.Products.CountAsync();
         }
+        private void SearchByName(ref IQueryable<Product> products, string nameOfProduct)
+        {
+            if (!products.Any() || string.IsNullOrWhiteSpace(nameOfProduct))
+                return;
 
-        
+            products = products.Where(m => m.name.ToLower().Contains(nameOfProduct.Trim().ToLower()));
+        }
+
     }
 }
