@@ -68,3 +68,9 @@ C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-P
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.OData.Core.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.Spatial.dll

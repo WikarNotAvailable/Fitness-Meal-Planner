@@ -22,10 +22,10 @@ namespace Application.Services
             mapper = _mapper;
             repository = _repository;
         }
-        public async Task<IEnumerable<MealDto>> GetAllMealsAsync()
+        public IQueryable<MealDto> GetAllMeals()
         {
-            var meals = await repository.GetAllMealsAsync();
-            return mapper.Map<IEnumerable<MealDto>>(meals);
+            var meals = repository.GetAllMeals();
+            return mapper.ProjectTo<MealDto>(meals);
         }
         public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {

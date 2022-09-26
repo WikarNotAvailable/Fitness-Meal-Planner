@@ -23,10 +23,10 @@ namespace Application.Services
             mapper = _mapper;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
+        public IQueryable<ProductDto> GetAllProducts()
         {
-            var products = await repository.GetAllProductsAsync();
-            return mapper.Map<IEnumerable<ProductDto>>(products);
+            var products = repository.GetAllProducts();
+            return mapper.ProjectTo<ProductDto>(products);
         }
         public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting)
         {

@@ -11,7 +11,7 @@ namespace Domain.Interfaces
     //interface for repository cotaining products
     public interface IProductsRepository
     {
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        IQueryable<Product> GetAllProducts();
         Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting);
         Task<Product> GetProductByIdAsync(Guid _id);
         Task AddProductAsync(Product product);

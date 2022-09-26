@@ -7,6 +7,7 @@ using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData;
 
 namespace WebAPI.Installers
 {
@@ -16,7 +17,8 @@ namespace WebAPI.Installers
         public void InstallServices(WebApplicationBuilder builder)
         {
             // Add services to the container.
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddOData(options => options.EnableQueryFeatures());
 
             builder.Services.AddApiVersioning(x =>
             {

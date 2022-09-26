@@ -19,9 +19,9 @@ namespace Infrastructure.Repositories
         {
             context = _context;
         }
-        public async Task<IEnumerable<Meal>> GetAllMealsAsync()
+        public IQueryable<Meal> GetAllMeals()
         {
-            return await context.Meals.ToListAsync();
+            return context.Meals.AsQueryable();
         }
         public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {

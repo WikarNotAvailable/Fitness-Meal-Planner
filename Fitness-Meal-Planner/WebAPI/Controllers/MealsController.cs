@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Domain.Additional_Structures;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using WebAPI.Filters;
 using WebAPI.Helpers;
 using WebAPI.Wrappers;
@@ -20,9 +21,10 @@ namespace WebAPI.Controllers
             mealsService = _service;
         }
         [HttpGet("all")]
-        public async Task<IEnumerable<MealDto>> GetAllMeals()
+        [EnableQuery]
+        public IQueryable<MealDto> GetAllMeals()
         {
-            return await mealsService.GetAllMealsAsync();
+            return mealsService.GetAllMeals();
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter,

@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Domain.Additional_Structures;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using WebAPI.Filters;
 using WebAPI.Helpers;
 using WebAPI.Wrappers;
@@ -20,9 +21,10 @@ namespace WebAPI.Controllers
             productsService = _productsService;
         }
         [HttpGet("all")]
-        public async Task<IEnumerable<ProductDto>> GetAllProducts()
+        [EnableQuery]
+        public IQueryable<ProductDto> GetAllProducts()
         {
-            return await productsService.GetAllProductsAsync();
+            return productsService.GetAllProducts();
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetPagedProducts([FromQuery] PaginationFilter paginationFilter,
