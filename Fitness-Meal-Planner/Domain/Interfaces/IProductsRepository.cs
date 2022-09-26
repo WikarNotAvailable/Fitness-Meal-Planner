@@ -12,7 +12,7 @@ namespace Domain.Interfaces
     public interface IProductsRepository
     {
         Task<IEnumerable<Product>> GetAllProductsAsync();
-        Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
+        Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting);
         Task<Product> GetProductByIdAsync(Guid _id);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);

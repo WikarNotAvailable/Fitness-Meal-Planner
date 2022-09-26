@@ -12,7 +12,7 @@ namespace Application.Interfaces
     public interface IProductsService
     {
         Task<IEnumerable<ProductDto>> GetAllProductsAsync();
-        Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
+        Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting);
         Task<ProductDto> AddProductAsync(CreateProductDto newProduct);
         Task<ProductDto> GetProductByIdAsync(Guid id);
         Task UpdateProductAsync (UpdateProductDto updatedProduct, Guid id);

@@ -28,9 +28,9 @@ namespace Application.Services
             var products = await repository.GetAllProductsAsync();
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
-        public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
+        public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting)
         {
-            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize, range);
+            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize, range, ascendingSorting);
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
         public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct)

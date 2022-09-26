@@ -23,7 +23,7 @@ namespace Infrastructure.Repositories
         {
             return await context.Meals.ToListAsync();
         }
-        public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
+        public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {
             var meals = context.Meals
                 .Where(m => m.calories <= range.maxCalories && m.calories >= range.minCalories && m.protein <= range.maxProtein &&
@@ -34,8 +34,12 @@ namespace Infrastructure.Repositories
 
             SearchByName(ref meals, range.name);
 
-            return await meals.ToListAsync();
-
+            if (ascendingSort == null)
+                return await meals.ToListAsync();
+            else if ((bool)ascendingSort)
+                return await meals.OrderBy(m => m.name).ToListAsync();
+            else
+                return await meals.OrderByDescending(m => m.name).ToListAsync();
         }
         public async Task<Meal> GetMealByIdAsync(Guid _id)
         {

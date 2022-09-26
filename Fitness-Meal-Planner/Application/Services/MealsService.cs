@@ -27,9 +27,9 @@ namespace Application.Services
             var meals = await repository.GetAllMealsAsync();
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
-        public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range)
+        public async Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {
-            var meals = await repository.GetMealsPagedAsync(pageNumber, pageSize, range);
+            var meals = await repository.GetMealsPagedAsync(pageNumber, pageSize, range, ascendingSort);
             return mapper.Map<IEnumerable<MealDto>>(meals);
         }
         public async Task<MealDto> GetMealByIdAsync(Guid id)

@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter,
-            [FromQuery] NutritionValuesFilter nutritionValuesFilter)
+            [FromQuery] NutritionValuesFilter nutritionValuesFilter, [FromQuery] bool? ascendingSort)
         {
             if (!nutritionValuesFilter.ValidFilterValues())
                 return BadRequest("Invalid range of nutrition values");
@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
 
             var validPaginationFilter = new PaginationFilter(paginationFilter.pageNumber, paginationFilter.pageSize);
 
-            var meals = await mealsService.GetMealsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize, nutritionRange);
+            var meals = await mealsService.GetMealsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize, nutritionRange, ascendingSort);
 
             var totalRecords = await mealsService.CountMealsAsync();
 

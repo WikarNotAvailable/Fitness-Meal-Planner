@@ -12,7 +12,7 @@ namespace Domain.Interfaces
     public interface IMealsRepository
     {
         Task<IEnumerable<Meal>> GetAllMealsAsync();
-        Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
+        Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort);
         Task<Meal> GetMealByIdAsync(Guid _id);
         Task AddMealAsync(Meal meal);
         Task UpdateMealAsync(Meal meal);

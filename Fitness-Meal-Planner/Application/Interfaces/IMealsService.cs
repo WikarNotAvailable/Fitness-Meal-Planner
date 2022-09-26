@@ -11,7 +11,7 @@ namespace Application.Interfaces
     public interface IMealsService
     {
         Task<IEnumerable<MealDto>> GetAllMealsAsync();
-        Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range);
+        Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort);
         Task<MealDto> GetMealByIdAsync(Guid id);
         Task<MealDto> AddMealAsync(CreateMealDto newMeal);
         Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id);
