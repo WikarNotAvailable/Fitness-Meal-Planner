@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Additional_Structures
 {
+    //ranges used to limit product/meals that will be shown 
     public class NutritionRange
     {
         public uint minCalories { get; set; }

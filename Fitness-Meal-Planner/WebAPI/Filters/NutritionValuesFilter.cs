@@ -1,5 +1,6 @@
 ﻿namespace WebAPI.Filters
 {
+    // filter used to limit products/meals that will be shown, based on nutrition values
     public class NutritionValuesFilter
     {
         public uint minCalories { get; set; }
