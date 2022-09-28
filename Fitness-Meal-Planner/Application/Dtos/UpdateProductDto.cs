@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace Application.Dtos
         public decimal fat { get; init; }
         public string ingredients { get; init; }
         public string description { get; init; }
+        public IFormFile image { get; init; }
     }
 }

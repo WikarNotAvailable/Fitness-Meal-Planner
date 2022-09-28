@@ -37,17 +37,19 @@ namespace Application.Services
             var meal = await repository.GetMealByIdAsync(id);
             return mapper.Map<MealDto>(meal);
         }
-        public async Task<MealDto> AddMealAsync(CreateMealDto newMeal)
+        public async Task<MealDto> AddMealAsync(CreateMealDto newMeal, string _mealImagePath)
         {
             var meal = mapper.Map<Meal>(newMeal);
+            meal.mealPhotoPath = _mealImagePath;
             await repository.AddMealAsync(meal);
             return mapper.Map<MealDto>(meal);
         }
 
-        public async Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id)
+        public async Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string _mealPhotoPath)
         {
             var existingMeal = await repository.GetMealByIdAsync(id);
             var meal = mapper.Map(updatedMeal, existingMeal);
+            meal.mealPhotoPath = _mealPhotoPath;
             await repository.UpdateMealAsync(meal);
         }
 
@@ -61,6 +63,10 @@ namespace Application.Services
             return await repository.CountMealsAsync();
         }
 
-       
+        public async Task<string> GetPathOfMealImage(Guid id)
+        {
+            var meal = await repository.GetMealByIdAsync(id);
+            return meal.mealPhotoPath;
+        }
     }
 }

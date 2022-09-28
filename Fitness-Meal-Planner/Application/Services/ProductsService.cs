@@ -33,9 +33,10 @@ namespace Application.Services
             var products = await repository.GetProductsPagedAsync(pageNumber, pageSize, range, ascendingSorting);
             return mapper.Map<IEnumerable<ProductDto>>(products);
         }
-        public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct)
+        public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string _productPhotoPath)
         {
             var product = mapper.Map<Product>(newProduct);
+            product.productPhotoPath = _productPhotoPath;
             await repository.AddProductAsync(product);
             return mapper.Map<ProductDto>(product);
         }
@@ -46,10 +47,11 @@ namespace Application.Services
             return mapper.Map<ProductDto>(product);
         }
 
-        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id)
+        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id, string _productPhotoPath)
         {
             var existingProduct = await repository.GetProductByIdAsync(id);
             var product = mapper.Map(updatedProduct, existingProduct);
+            product.productPhotoPath = _productPhotoPath;
             await repository.UpdateProductAsync(product);
         }
 
@@ -61,6 +63,12 @@ namespace Application.Services
         public async Task<int> CountProductsAsync()
         {
             return await repository.CountProductsAsync();
+        }
+
+        public async Task<string> GetPathOfProductImage(Guid id)
+        {
+            var product = await repository.GetProductByIdAsync(id);
+            return product.productPhotoPath;
         }
     }
 }

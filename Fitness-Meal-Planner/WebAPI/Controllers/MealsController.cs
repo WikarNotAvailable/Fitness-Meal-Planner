@@ -1,11 +1,14 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using Domain.Additional_Structures;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using System.IO;
 using WebAPI.Filters;
 using WebAPI.Helpers;
 using WebAPI.Wrappers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers
 {
@@ -16,9 +19,11 @@ namespace WebAPI.Controllers
     public class MealsController : ControllerBase
     {
         private readonly IMealsService mealsService;
-        public MealsController(IMealsService _service)
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public MealsController(IMealsService _service, IWebHostEnvironment _webHostEnvironment)
         {
             mealsService = _service;
+            webHostEnvironment = _webHostEnvironment;
         }
         [HttpGet("all")]
         [EnableQuery]
@@ -56,20 +61,58 @@ namespace WebAPI.Controllers
             return Ok(new Response<MealDto>(meal));
         }
         [HttpPost]
-        public async Task<ActionResult> AddMeal(CreateMealDto newMeal)
+        public async Task<ActionResult> AddMeal([FromForm]CreateMealDto newMeal)
         {
-            var meal = await mealsService.AddMealAsync(newMeal);
+            string mealPhotoPath;
+
+            if(newMeal.image == null || newMeal.image.Length == 0)
+            {
+                mealPhotoPath = "";
+            }
+            else
+            {
+                string uniqueID = Guid.NewGuid().ToString();
+                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + newMeal.image.FileName);
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    await newMeal.image.CopyToAsync(stream);
+                    stream.Close();
+                }
+               mealPhotoPath = path;
+            }
+            var meal = await mealsService.AddMealAsync(newMeal, mealPhotoPath);
             return Created($"/meals.{meal.id}", new Response<MealDto>(meal));
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateMeal(UpdateMealDto updatedMeal, Guid id)
+        public async Task<ActionResult> UpdateMeal([FromForm]UpdateMealDto updatedMeal, Guid id)
         {
             var meal = await mealsService.GetMealByIdAsync(id);
 
             if (meal == null)
                 return NotFound();
 
-            await mealsService.UpdateMealAsync(updatedMeal, id);
+            var mealPhotoPath = await mealsService.GetPathOfMealImage(id);
+            if (System.IO.File.Exists(mealPhotoPath))
+                System.IO.File.Delete(mealPhotoPath);
+
+            if (updatedMeal.image == null || updatedMeal.image.Length == 0)
+            {
+                mealPhotoPath = "";
+            }
+            else
+            {
+                string uniqueID = Guid.NewGuid().ToString();
+                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + updatedMeal.image.FileName);
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    await updatedMeal.image.CopyToAsync(stream);
+                    stream.Close();
+                }
+                mealPhotoPath = path;
+            }
+            await mealsService.UpdateMealAsync(updatedMeal, id, mealPhotoPath);
             return NoContent();
         }
         [HttpDelete("{id}")]
@@ -79,6 +122,10 @@ namespace WebAPI.Controllers
 
             if (meal == null)
                 return NotFound();
+
+            var mealPhotoPath = await mealsService.GetPathOfMealImage(id);
+            if (System.IO.File.Exists(mealPhotoPath))
+                System.IO.File.Delete(mealPhotoPath);
 
             await mealsService.DeleteMealAsync(id);
             return NoContent();

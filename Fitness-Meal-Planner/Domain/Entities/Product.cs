@@ -30,6 +30,7 @@ namespace Domain.Entities
         public string ingredients { get; init; }
         [MaxLength(500)]
         public string description { get; init; }
+        public string productPhotoPath { get; set; }
         public Product() {}
         public Product(string _name, int _weight, decimal _calories, decimal _protein, 
             decimal _carbohydrates, decimal _fat, string _ingredients, string _description) 

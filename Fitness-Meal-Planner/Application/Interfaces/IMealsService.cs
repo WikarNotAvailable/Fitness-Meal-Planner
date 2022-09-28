@@ -13,9 +13,10 @@ namespace Application.Interfaces
         IQueryable<MealDto> GetAllMeals();
         Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort);
         Task<MealDto> GetMealByIdAsync(Guid id);
-        Task<MealDto> AddMealAsync(CreateMealDto newMeal);
-        Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id);
+        Task<MealDto> AddMealAsync(CreateMealDto newMeal, string _mealPhotoPath);
+        Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string _mealPhotoPath);
         Task DeleteMealAsync(Guid id);
         Task<int> CountMealsAsync();
+        Task<string> GetPathOfMealImage(Guid id);
     }
 }

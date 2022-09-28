@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "7/8N/7vR8Gil4oF52j1JyaDaDh/w/bwrwTANJiMV94U=",
+  "Hash": "2Vq+H3Wzwjt+p+KOaOPuziVHFH6ycRdus95cxkj+jIs=",
   "Source": "WebAPI",
   "BasePath": "_content/WebAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebAPI\\wwwroot",
+      "Source": "WebAPI",
+      "ContentRoot": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\WebAPI\\wwwroot\\UploadedImages\\18187de1-b57a-4d86-97f2-273f1987073fDW.jpg",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "UploadedImages/18187de1-b57a-4d86-97f2-273f1987073fDW.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\18187de1-b57a-4d86-97f2-273f1987073fDW.jpg"
+    }
+  ]
 }

@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel;
+
 namespace Domain.Entities
 {
     //table containing meals
@@ -34,13 +37,14 @@ namespace Domain.Entities
         [Required]
         [MaxLength(1000)]
         public string recipe { get; init; }
+        public string mealPhotoPath { get; set; }
         public Meal() { }
         public Meal(string _name, int _weightInGrams, decimal _calories, decimal _protein,
             decimal _carbohydrates, decimal _fat, string _ingredients, string _recipe) 
         {
             id = Guid.NewGuid();
-            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, recipe) = (_name, _weightInGrams, _calories, _protein,
-                _carbohydrates, _fat, _ingredients, _recipe);
+            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, recipe) = (_name,
+                _weightInGrams, _calories, _protein, _carbohydrates, _fat, _ingredients, _recipe);
         }
     }
 }
