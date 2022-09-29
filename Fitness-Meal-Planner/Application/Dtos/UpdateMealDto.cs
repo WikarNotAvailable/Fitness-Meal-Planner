@@ -17,6 +17,6 @@ namespace Application.Dtos
         public decimal fat { get; init; }
         public string ingredients { get; init; }
         public string recipe { get; init; }
-        public IFormFile image { get; init; }
+        public IFormFile? image { get; init; }
     }
 }

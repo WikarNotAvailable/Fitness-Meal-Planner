@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,13 @@ namespace Infrastructure.Repositories
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+        public async Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
+        {
+            var meal = await context.Meals.FindAsync(id);
+            patchedMeal.ApplyTo(meal);
+
+            await context.SaveChangesAsync();
+        }
         public async Task DeleteMealAsync(Meal meal)
         {
             context.Meals.Remove(meal);
@@ -74,5 +82,7 @@ namespace Infrastructure.Repositories
 
             meals = meals.Where(m => m.name.ToLower().Contains(nameOfMeal.Trim().ToLower()));
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ using AutoMapper;
 using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,10 @@ namespace Application.Services
             meal.mealPhotoPath = _mealPhotoPath;
             await repository.UpdateMealAsync(meal);
         }
-
+        public async Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
+        {
+            await repository.PatchMealAsync(patchedMeal, id);
+        }
         public async Task DeleteMealAsync(Guid id)
         {
             var meal = await repository.GetMealByIdAsync(id);
@@ -68,5 +72,7 @@ namespace Application.Services
             var meal = await repository.GetMealByIdAsync(id);
             return meal.mealPhotoPath;
         }
+
+
     }
 }

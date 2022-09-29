@@ -75,3 +75,7 @@ C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-P
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.Spatial.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\WebAPI.staticwebassets.runtime.json
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

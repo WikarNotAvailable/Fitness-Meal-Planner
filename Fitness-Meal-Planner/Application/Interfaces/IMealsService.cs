@@ -1,5 +1,6 @@
 ﻿using Application.Dtos;
 using Domain.Additional_Structures;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Application.Interfaces
         Task<MealDto> GetMealByIdAsync(Guid id);
         Task<MealDto> AddMealAsync(CreateMealDto newMeal, string _mealPhotoPath);
         Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string _mealPhotoPath);
+        Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id);
         Task DeleteMealAsync(Guid id);
         Task<int> CountMealsAsync();
         Task<string> GetPathOfMealImage(Guid id);

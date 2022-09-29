@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,13 @@ namespace Infrastructure.Repositories
             await Task.CompletedTask;
         }
 
+        public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
+        {
+            var product = await context.Products.FindAsync(id);
+            patchedProduct.ApplyTo(product);
+
+            await context.SaveChangesAsync();
+        }
         public async Task DeleteProductAsync(Product product)
         {
             context.Products.Remove(product);

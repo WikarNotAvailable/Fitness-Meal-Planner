@@ -1,7 +1,9 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using Domain.Additional_Structures;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using System.IO;
@@ -113,6 +115,17 @@ namespace WebAPI.Controllers
                 mealPhotoPath = path;
             }
             await mealsService.UpdateMealAsync(updatedMeal, id, mealPhotoPath);
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedMeal, Guid id)
+        {
+            var meal = await mealsService.GetMealByIdAsync(id);
+
+            if (meal == null)
+                return NotFound();
+
+            await mealsService.PatchMealAsync(patchedMeal, id);
             return NoContent();
         }
         [HttpDelete("{id}")]

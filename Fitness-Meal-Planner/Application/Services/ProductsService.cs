@@ -4,6 +4,7 @@ using AutoMapper;
 using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,10 @@ namespace Application.Services
             product.productPhotoPath = _productPhotoPath;
             await repository.UpdateProductAsync(product);
         }
-
+        public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
+        {
+            await repository.PatchProductAsync(patchedProduct, id); 
+        }
         public async Task DeleteProductAsync(Guid id)
         {
             var product = await repository.GetProductByIdAsync(id);
@@ -70,5 +74,6 @@ namespace Application.Services
             var product = await repository.GetProductByIdAsync(id);
             return product.productPhotoPath;
         }
+
     }
 }

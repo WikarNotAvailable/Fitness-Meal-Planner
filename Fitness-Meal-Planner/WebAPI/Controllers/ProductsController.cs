@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Application.Services;
 using Domain.Additional_Structures;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using WebAPI.Filters;
@@ -114,6 +115,17 @@ namespace WebAPI.Controllers
             }
 
             await productsService.UpdateProductAsync(updatedProduct, id, productPhotoPath);
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedProduct, Guid id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+
+            if (product == null)
+                return NotFound();
+
+            await productsService.PatchProductAsync(patchedProduct, id);
             return NoContent();
         }
         [HttpDelete("{id}")]
