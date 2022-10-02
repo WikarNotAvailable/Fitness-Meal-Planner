@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Interfaces;
 using AutoMapper;
+using Domain.Additional;
 using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -43,7 +44,9 @@ namespace Application.Services
             var meal = mapper.Map<Meal>(newMeal);
             meal.mealPhotoPath = _mealImagePath;
             await repository.AddMealAsync(meal);
-            return mapper.Map<MealDto>(meal);
+            //return mapper.Map<MealDto>(meal);
+            var Mealzzz = new MealDto(meal.id, meal.name, meal.weightInGrams, meal.calories, meal.protein, meal.carbohydrates, meal.fat, IngredientsConverter.stringToList(meal.ingredients), meal.recipe);
+            return Mealzzz;
         }
 
         public async Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string _mealPhotoPath)

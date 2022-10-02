@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Additional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 
 namespace Domain.Entities
@@ -33,18 +33,19 @@ namespace Domain.Entities
         public decimal fat { get; init; }
         [Required]
         [MaxLength(500)]
-        public string ingredients { get; init; }
+        public string ingredients { get; set; } 
         [Required]
         [MaxLength(1000)]
         public string recipe { get; init; }
         public string mealPhotoPath { get; set; }
         public Meal() { }
         public Meal(string _name, int _weightInGrams, decimal _calories, decimal _protein,
-            decimal _carbohydrates, decimal _fat, string _ingredients, string _recipe) 
+            decimal _carbohydrates, decimal _fat, List<Ingredient>?  _ingredientsList, string _recipe) 
         {
             id = Guid.NewGuid();
-            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, recipe) = (_name,
-                _weightInGrams, _calories, _protein, _carbohydrates, _fat, _ingredients, _recipe);
+            ingredients = IngredientsConverter.listToString(_ingredientsList);
+            (name, weightInGrams, calories, protein, carbohydrates, fat, recipe) = (_name,
+                _weightInGrams, _calories, _protein, _carbohydrates, _fat, _recipe);
         }
     }
 }
