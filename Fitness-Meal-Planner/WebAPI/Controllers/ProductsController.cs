@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Application.Services;
 using Domain.Additional_Structures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +26,14 @@ namespace WebAPI.Controllers
             productsService = _productsService;
             webHostEnvironment = _webHostEnvironment;
         }
+        [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<ProductDto> GetAllProducts()
         {
             return productsService.GetAllProducts();
         }
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetPagedProducts([FromQuery] PaginationFilter paginationFilter,
             [FromQuery] NutritionValuesFilter nutritionValuesFilter, [FromQuery] bool? ascendingSorting)
@@ -50,6 +53,7 @@ namespace WebAPI.Controllers
 
             return Ok(PaginationHelper.CreatePagedResponse(products, validPaginationFilter, totalRecords));
         }
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
         {
@@ -60,6 +64,7 @@ namespace WebAPI.Controllers
 
             return Ok(new Response<ProductDto>(product));
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddProduct([FromForm]CreateProductDto newProduct)
         {
@@ -85,6 +90,7 @@ namespace WebAPI.Controllers
             var product = await productsService.AddProductAsync(newProduct, productPhotoPath);
             return Created($"/products.{product.id}", new Response<ProductDto>(product));     
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProduct ([FromForm]UpdateProductDto updatedProduct, Guid id)
         {
@@ -117,6 +123,7 @@ namespace WebAPI.Controllers
             await productsService.UpdateProductAsync(updatedProduct, id, productPhotoPath);
             return NoContent();
         }
+        [Authorize]
         [HttpPatch("{id}")]
         public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedProduct, Guid id)
         {
@@ -128,6 +135,7 @@ namespace WebAPI.Controllers
             await productsService.PatchProductAsync(patchedProduct, id);
             return NoContent();
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct (Guid id)
         {

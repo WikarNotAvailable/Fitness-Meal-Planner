@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Domain.Additional_Structures;
 using Domain.Common;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -28,12 +29,14 @@ namespace WebAPI.Controllers
             mealsService = _service;
             webHostEnvironment = _webHostEnvironment;
         }
+        [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<MealDto> GetAllMeals()
         {
             return mealsService.GetAllMeals();
         }
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter,
             [FromQuery] NutritionValuesFilter nutritionValuesFilter, [FromQuery] bool? ascendingSort)
@@ -53,6 +56,7 @@ namespace WebAPI.Controllers
 
             return Ok(PaginationHelper.CreatePagedResponse(meals, validPaginationFilter, totalRecords));
         }
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<MealDto>> GetMeal(Guid id)
         {
@@ -63,6 +67,7 @@ namespace WebAPI.Controllers
 
             return Ok(new Response<MealDto>(meal));
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddMeal([FromForm]CreateMealDto newMeal)
         {
@@ -86,6 +91,7 @@ namespace WebAPI.Controllers
             var meal = await mealsService.AddMealAsync(newMeal, mealPhotoPath);
             return Created($"/meals.{meal.id}", new Response<MealDto>(meal));
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateMeal([FromForm]UpdateMealDto updatedMeal, Guid id)
         {
@@ -117,6 +123,7 @@ namespace WebAPI.Controllers
             await mealsService.UpdateMealAsync(updatedMeal, id, mealPhotoPath);
             return NoContent();
         }
+        [Authorize]
         [HttpPatch("{id}")]
         public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedMeal, Guid id)
         {
@@ -128,6 +135,7 @@ namespace WebAPI.Controllers
             await mealsService.PatchMealAsync(patchedMeal, id);
             return NoContent();
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMeal(Guid id)
         {
