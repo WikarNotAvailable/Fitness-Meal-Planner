@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Dtos.MealDtos
 {
-    public record CreateMealDto
+    public record UpdateMealDto
     {
         public string name { get; init; }
         public int weightInGrams { get; init; }

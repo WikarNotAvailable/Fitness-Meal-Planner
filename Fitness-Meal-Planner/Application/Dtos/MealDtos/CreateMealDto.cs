@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Dtos.MealDtos
 {
-    // dto for updated product
-    public record UpdateProductDto
+    public record CreateMealDto
     {
         public string name { get; init; }
         public int weightInGrams { get; init; }
@@ -16,8 +16,8 @@ namespace Application.Dtos
         public decimal protein { get; init; }
         public decimal carbohydrates { get; init; }
         public decimal fat { get; init; }
-        public string ingredients { get; init; }
-        public string description { get; init; }
+        public List<Ingredient>? ingredientsList { get; init; }
+        public string recipe { get; init; }
         public IFormFile? image { get; init; }
     }
 }

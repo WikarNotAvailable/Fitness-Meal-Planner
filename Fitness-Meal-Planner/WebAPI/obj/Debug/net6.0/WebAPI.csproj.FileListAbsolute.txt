@@ -88,3 +88,5 @@ C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-P
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

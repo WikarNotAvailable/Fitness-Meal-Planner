@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.MealDtos;
 using Domain.Additional_Structures;
 using Microsoft.AspNetCore.JsonPatch;
 using System;

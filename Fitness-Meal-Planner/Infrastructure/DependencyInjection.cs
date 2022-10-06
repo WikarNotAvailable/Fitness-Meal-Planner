@@ -15,6 +15,7 @@ namespace Infrastructure
         {
             services.AddScoped<IProductsRepository, SQLProductsRepository>();
             services.AddScoped<IMealsRepository, SQLMealsRepository>();
+            services.AddScoped<IUsersRepository, SQLUsersRepository>();
             return services;
         }
     }

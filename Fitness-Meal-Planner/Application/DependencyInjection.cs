@@ -17,6 +17,8 @@ namespace Application
         {
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IMealsService, MealsService>();
+            services.AddScoped<IUsersService, UsersService>();  
+            services.AddScoped<ITokenService, TokenService>();
             services.AddSingleton(AutoMapperConfig.Initialize());
 
             return services;

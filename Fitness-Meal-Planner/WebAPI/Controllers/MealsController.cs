@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.MealDtos;
 using Application.Interfaces;
 using Domain.Additional_Structures;
 using Domain.Common;
@@ -67,7 +67,6 @@ namespace WebAPI.Controllers
         public async Task<ActionResult> AddMeal([FromForm]CreateMealDto newMeal)
         {
             string mealPhotoPath;
-
             if(newMeal.image == null || newMeal.image.Length == 0)
             {
                 mealPhotoPath = "";

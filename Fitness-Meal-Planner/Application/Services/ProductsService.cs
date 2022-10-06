@@ -1,4 +1,4 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.ProductDtos;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Additional_Structures;

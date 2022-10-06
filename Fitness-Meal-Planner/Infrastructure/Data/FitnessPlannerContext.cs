@@ -14,6 +14,7 @@ namespace Infrastructure.Data
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<User> Users { get; set; }
         public FitnessPlannerContext(DbContextOptions options) : base(options) { }
         public async Task<int> SaveChangesAsync()
         {

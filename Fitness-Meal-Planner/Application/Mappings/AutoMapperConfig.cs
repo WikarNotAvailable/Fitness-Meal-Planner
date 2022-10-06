@@ -1,5 +1,4 @@
-﻿using Application.Dtos;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Additional;
 using Domain.Entities;
 using Domain.Common;
@@ -9,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Application.Dtos.MealDtos;
+using Application.Dtos.ProductDtos;
+using Application.Dtos.UserDtos;
 
 namespace Application.Mappings
 {
@@ -28,6 +30,9 @@ namespace Application.Mappings
                     x.fat, x.ingredientsList, x.recipe));
                 cfg.CreateMap<UpdateMealDto, Meal>().ForMember(dest => dest.ingredients, 
                     opt => opt.MapFrom(src => IngredientsConverter.listToString(src.ingredientsList)));
+                cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<RegisterDto, User>();
+                cfg.CreateMap<User, User>();
             })
             .CreateMapper();
     }

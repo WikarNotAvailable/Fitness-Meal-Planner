@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Dtos.ProductDtos
 {
     // Dto for new added products
-    public record CreateProductDto 
+    public record CreateProductDto
     {
         public string name { get; init; }
         public int weightInGrams { get; init; }

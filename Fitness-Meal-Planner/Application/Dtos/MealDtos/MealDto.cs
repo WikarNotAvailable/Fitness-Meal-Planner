@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Dtos
+namespace Application.Dtos.MealDtos
 {
     public record MealDto
     {
@@ -19,10 +19,10 @@ namespace Application.Dtos
         public decimal fat { get; init; }
         public List<Ingredient>? ingredientsList { get; init; }
         public string recipe { get; init; }
-        public MealDto(Guid _id,string _name, int _weightInGrams, decimal _calories, decimal _protein,
+        public MealDto(Guid _id, string _name, int _weightInGrams, decimal _calories, decimal _protein,
            decimal _carbohydrates, decimal _fat, List<Ingredient>? _ingredientsList, string _recipe)
         {
-            (id, name, weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe) = (_id,_name,
+            (id, name, weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe) = (_id, _name,
                 _weightInGrams, _calories, _protein, _carbohydrates, _fat, _ingredientsList, _recipe);
         }
     }
