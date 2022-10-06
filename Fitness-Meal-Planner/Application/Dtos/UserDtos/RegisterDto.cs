@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Dtos.UserDtos
 {
+    //dto used for registration of users
     public record RegisterDto
     {
         public string username { get; init; }

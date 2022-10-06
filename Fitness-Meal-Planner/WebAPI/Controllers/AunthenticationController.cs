@@ -8,7 +8,7 @@ namespace WebAPI.Controllers
     //Controller used for authentication of users
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("authentication")]
+    [Route("auth")]
     public class AunthenticationController : ControllerBase
     {
         private readonly IUsersService usersService;
@@ -82,8 +82,19 @@ namespace WebAPI.Controllers
             var user = await usersService.GetUserByUsernameAsync(username);
             if (user == null)
                 return NotFound();
-            else
-                return Ok(user);
+
+            return Ok(user);
+        }
+        [Authorize(Roles = "admin")]
+        [HttpDelete("{username}")]
+        public async Task<IActionResult> DeleteUser(string username)
+        {
+            var user = await usersService.GetUserByUsernameAsync(username);
+            if (user == null)
+                return NotFound();
+
+            await usersService.DeleteUserAsync(username);
+            return NoContent();
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
+    //jwt tokens' actions
     internal class TokenService : ITokenService
     {
         public string GenerateJWT(UserDto userInfo, IConfiguration config)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Dtos.UserDtos
 {
+    //dto used for logging of user
     public record LoginDto
     {
         public string username { get; init; }

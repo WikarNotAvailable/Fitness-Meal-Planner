@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
+    //interface for service working on users repository
     public interface IUsersService
     {
         Task<UserDto> GetUserAsync(LoginDto userCredentials);
@@ -14,5 +15,6 @@ namespace Application.Interfaces
         Task<UserDto> AddUserAsync(RegisterDto userDto);
         Task ChangePasswordAsync(string _username, string _password);
         Task ChangeEmailAsync (string _username, string _email);
+        Task DeleteUserAsync (string _username);
     }
 }

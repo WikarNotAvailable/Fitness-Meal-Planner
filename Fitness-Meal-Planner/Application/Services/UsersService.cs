@@ -65,5 +65,11 @@ namespace Application.Services
             var newUser = mapper.Map(newUserInfo, user);
             await repository.UpdateUserAsync(newUser);
         }
+
+        public async Task DeleteUserAsync(string _username)
+        {
+            var user = await repository.GetUserByUsernameAsync(_username);
+            await repository.DeleteUserAsync(user);
+        }
     }
 }

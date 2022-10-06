@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Dtos.UserDtos
 {
+    //dto used for showing info of user
     public record UserDto
     {
         public string username { get; init; }

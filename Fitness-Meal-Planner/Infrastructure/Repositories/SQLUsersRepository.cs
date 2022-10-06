@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
+    // class working on sql database, more specifically on users table
     public class SQLUsersRepository : IUsersRepository
     {
         private readonly FitnessPlannerContext context;
@@ -37,6 +38,13 @@ namespace Infrastructure.Repositories
         public async Task UpdateUserAsync(User user)
         {
             context.Users.Update(user);
+            await context.SaveChangesAsync();
+            await Task.CompletedTask;
+        }
+
+        public async Task DeleteUserAsync(User user)
+        {
+            context.Users.Remove(user);
             await context.SaveChangesAsync();
             await Task.CompletedTask;
         }
