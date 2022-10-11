@@ -45,7 +45,6 @@ namespace WebAPI.Installers
                 });
 
             builder.Services.AddMvc();
-
             builder.Services.AddInfrastructure();
             builder.Services.AddApplication();
         }
