@@ -24,16 +24,19 @@ namespace WebAPI.Controllers
     {
         private readonly IMealsService mealsService;
         private readonly IWebHostEnvironment webHostEnvironment;
-        public MealsController(IMealsService _service, IWebHostEnvironment _webHostEnvironment)
+        private readonly ILogger<MealsController> logger;
+        public MealsController(IMealsService _service, IWebHostEnvironment _webHostEnvironment, ILogger<MealsController> _logger)
         {
             mealsService = _service;
             webHostEnvironment = _webHostEnvironment;
+            logger = _logger;
         }
         [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<MealDto> GetAllMeals()
         {
+            logger.LogInformation("Getting all meals from database as queryable.");
             return mealsService.GetAllMeals();
         }
         [AllowAnonymous]

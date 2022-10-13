@@ -9,8 +9,8 @@ namespace Domain.Additional
     public class IndividualHealthCheckResponse
     {
 
-        public string Status { get; set; }
-        public string Component { get; set; }
-        public string Description { get; set; }
+        public string status { get; set; }
+        public string component { get; set; }
+        public string description { get; set; }
     }
 }

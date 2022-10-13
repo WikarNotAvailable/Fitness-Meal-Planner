@@ -16,7 +16,7 @@ namespace WebAPI.Installers
         public void InstallServices(WebApplicationBuilder builder)
         {
             builder.Services.AddHealthChecks().AddSqlServer(builder.Configuration.GetConnectionString("FitnessPlannerCS"), tags: new[] { "database" });
-            builder.Services.AddHealthChecksUI().AddInMemoryStorage();
+            builder.Services.AddHealthChecksUI().AddSqlServerStorage(builder.Configuration.GetConnectionString("FitnessPlannerCS"));
         }
     }
 }

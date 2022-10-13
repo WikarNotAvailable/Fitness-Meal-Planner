@@ -14,11 +14,13 @@ namespace WebAPI.Controllers
         private readonly IUsersService usersService;
         private readonly ITokenService tokenService;
         private readonly IConfiguration config;
-        public AunthenticationController(IUsersService _usersService, ITokenService _tokenService, IConfiguration _config)
+        private readonly ILogger<AunthenticationController> loger;
+        public AunthenticationController(IUsersService _usersService, ITokenService _tokenService, IConfiguration _config, ILogger<AunthenticationController> _loger)
         {
             usersService = _usersService;
             tokenService = _tokenService;
             config = _config;
+            loger = _loger;
         }
         [AllowAnonymous]
         [HttpPost("login")]

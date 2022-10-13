@@ -21,10 +21,12 @@ namespace WebAPI.Controllers
     {
         private readonly IProductsService productsService;
         private readonly IWebHostEnvironment webHostEnvironment;
-        public ProductsController(IProductsService _productsService, IWebHostEnvironment _webHostEnvironment)
+        private readonly ILogger<ProductsController> loger;
+        public ProductsController(IProductsService _productsService, IWebHostEnvironment _webHostEnvironment, ILogger<ProductsController> _loger)
         {
             productsService = _productsService;
             webHostEnvironment = _webHostEnvironment;
+            loger = _loger;
         }
         [AllowAnonymous]
         [HttpGet("all")]
