@@ -3,18 +3,18 @@
     //filter used for pagination
     public class PaginationFilter
     {
-        private const int maxPageSize = 50;
-        public int pageNumber { get; set; }
-        public int pageSize { get; set; }
+        private const int MaxPageSize = 50;
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
         public PaginationFilter()
         {
-            pageNumber = 1;
-            pageSize = maxPageSize;
+            PageNumber = 1;
+            PageSize = MaxPageSize;
         }
-        public PaginationFilter(int _pageNumber, int _pageSize)
+        public PaginationFilter(int pageNumber, int pageSize)
         {
-            pageNumber = _pageNumber < 1 ? 1 : _pageNumber;
-            pageSize = _pageSize > maxPageSize ? maxPageSize : _pageSize;
+            PageNumber = pageNumber < 1 ? 1 : pageNumber;
+            PageSize = pageSize > MaxPageSize ? MaxPageSize : pageSize;
         }
     }
 }

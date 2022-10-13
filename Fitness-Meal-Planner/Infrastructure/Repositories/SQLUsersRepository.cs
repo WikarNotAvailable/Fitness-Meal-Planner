@@ -13,39 +13,37 @@ namespace Infrastructure.Repositories
     // class working on sql database, more specifically on users table
     public class SQLUsersRepository : IUsersRepository
     {
-        private readonly FitnessPlannerContext context;
-        public SQLUsersRepository(FitnessPlannerContext _context)
+        private readonly FitnessPlannerContext _context;
+        public SQLUsersRepository(FitnessPlannerContext context)
         {
-            context = _context;
+            _context = context;
         }
 
-        public async Task<User> GetUserAsync(string _username, string _password)
+        public async Task<User> GetUserAsync(string username, string password)
         {
-            return await context.Users.SingleOrDefaultAsync(u => u.username == _username && u.password == _password);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
 
-        public async Task<User> GetUserByUsernameAsync(string _username)
+        public async Task<User> GetUserByUsernameAsync(string username)
         {
-            return await context.Users.SingleOrDefaultAsync(u => u.username == _username);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
         }
         public async Task AddUserAsync(User user)
         {
-            await context.Users.AddAsync(user);
-            await context.SaveChangesAsync();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-
         public async Task UpdateUserAsync(User user)
         {
-            context.Users.Update(user);
-            await context.SaveChangesAsync();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-
         public async Task DeleteUserAsync(User user)
         {
-            context.Users.Remove(user);
-            await context.SaveChangesAsync();
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
     }

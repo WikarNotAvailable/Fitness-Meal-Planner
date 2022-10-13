@@ -12,7 +12,7 @@ namespace Domain.Common
  [ModelBinder(BinderType = typeof(MetadataValueModelBinder))]
     public class Ingredient
     {
-        public string name { get; set; }
-        public int weight { get; set; }
+        public string Name { get; set; }
+        public int Weight { get; set; }
     }
 }

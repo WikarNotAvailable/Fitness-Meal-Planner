@@ -2,19 +2,19 @@
 {
     public class PagedResponse<T> : Response<T>
     {
-        public int pageNumber { get; set; }
-        public int pageSize { get; set; }
-        public int totalPages { get; set; }
-        public int totalRecords { get; set; }
-        public bool nextPage { get; set; }
-        public bool previousPage { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public int TotalPages { get; set; }
+        public int TotalRecords { get; set; }
+        public bool NextPage { get; set; }
+        public bool PreviousPage { get; set; }
 
-        public PagedResponse (T _data, int _pageNumber, int _pageSize)
+        public PagedResponse (T data, int pageNumber, int pageSize)
         {
-            pageNumber = _pageNumber;
-            data = _data;
-            pageSize = _pageSize;
-            succeeded = true;
+            PageNumber = pageNumber;
+            Data = data;
+            PageSize = pageSize;
+            Succeeded = true;
         }
     }
 }

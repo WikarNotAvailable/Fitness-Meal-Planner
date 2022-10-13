@@ -10,20 +10,20 @@ namespace Application.Dtos.MealDtos
 {
     public record MealDto
     {
-        public Guid id { get; init; }
-        public string name { get; init; }
-        public int weightInGrams { get; init; }
-        public decimal calories { get; init; }
-        public decimal protein { get; init; }
-        public decimal carbohydrates { get; init; }
-        public decimal fat { get; init; }
-        public List<Ingredient>? ingredientsList { get; init; }
-        public string recipe { get; init; }
-        public MealDto(Guid _id, string _name, int _weightInGrams, decimal _calories, decimal _protein,
-           decimal _carbohydrates, decimal _fat, List<Ingredient>? _ingredientsList, string _recipe)
+        public Guid Id { get; init; }
+        public string Name { get; init; }
+        public int WeightInGrams { get; init; }
+        public decimal Calories { get; init; }
+        public decimal Protein { get; init; }
+        public decimal Carbohydrates { get; init; }
+        public decimal Fat { get; init; }
+        public List<Ingredient>? IngredientsList { get; init; }
+        public string Recipe { get; init; }
+        public MealDto(Guid id, string name, int weightInGrams, decimal calories, decimal protein,
+           decimal carbohydrates, decimal fat, List<Ingredient>? ingredientsList, string recipe)
         {
-            (id, name, weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe) = (_id, _name,
-                _weightInGrams, _calories, _protein, _carbohydrates, _fat, _ingredientsList, _recipe);
+            (Id, Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, IngredientsList, Recipe) = (id, name,
+                weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe);
         }
     }
 }

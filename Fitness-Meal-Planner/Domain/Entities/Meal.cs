@@ -17,35 +17,35 @@ namespace Domain.Entities
     public record Meal : AuditableEntity
     {
         [Key]
-        public Guid id { get; init; }
+        public Guid Id { get; init; }
         [Required]
         [MaxLength(50)]
-        public string name { get; init; }
+        public string Name { get; init; }
         [Required]
-        public int weightInGrams { get; init; }
+        public int WeightInGrams { get; init; }
         [Required]
-        public decimal calories { get; init; }
+        public decimal Calories { get; init; }
         [Required]
-        public decimal protein { get; init; }
+        public decimal Protein { get; init; }
         [Required]
-        public decimal carbohydrates { get; init; }
+        public decimal Carbohydrates { get; init; }
         [Required]
-        public decimal fat { get; init; }
+        public decimal Fat { get; init; }
         [Required]
         [MaxLength(500)]
-        public string ingredients { get; set; } 
+        public string Ingredients { get; set; } 
         [Required]
         [MaxLength(1000)]
-        public string recipe { get; init; }
-        public string mealPhotoPath { get; set; }
+        public string Recipe { get; init; }
+        public string MealPhotoPath { get; set; }
         public Meal() { }
-        public Meal(string _name, int _weightInGrams, decimal _calories, decimal _protein,
-            decimal _carbohydrates, decimal _fat, List<Ingredient>?  _ingredientsList, string _recipe) 
+        public Meal(string name, int weightInGrams, decimal calories, decimal protein,
+            decimal carbohydrates, decimal fat, List<Ingredient>?  ingredientsList, string recipe) 
         {
-            id = Guid.NewGuid();
-            ingredients = IngredientsConverter.listToString(_ingredientsList);
-            (name, weightInGrams, calories, protein, carbohydrates, fat, recipe) = (_name,
-                _weightInGrams, _calories, _protein, _carbohydrates, _fat, _recipe);
+            Id = Guid.NewGuid();
+            Ingredients = IngredientsConverter.listToString(ingredientsList);
+            (Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, Recipe) = (name,
+                weightInGrams, calories, protein, carbohydrates, fat, recipe);
         }
     }
 }

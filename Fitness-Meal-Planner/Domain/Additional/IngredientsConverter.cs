@@ -20,7 +20,7 @@ namespace Domain.Additional
             }
             foreach (var ingredient in ingredientsList)
             {
-                ingredients += ingredient.name + "=" + ingredient.weight + ",";
+                ingredients += ingredient.Name + "=" + ingredient.Weight + ",";
             }
             return ingredients.Remove(ingredients.Length - 1);
         }
@@ -38,8 +38,8 @@ namespace Domain.Additional
                 string[] dividedIngredient = ingredient.Split("=".ToCharArray());
                 list.Add(new Ingredient
                 {
-                    name = dividedIngredient[0],
-                    weight = Int32.Parse(dividedIngredient[1])
+                    Name = dividedIngredient[0],
+                    Weight = Int32.Parse(dividedIngredient[1])
                 });
             }
             return list;

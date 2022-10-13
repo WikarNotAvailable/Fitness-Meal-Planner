@@ -15,75 +15,72 @@ namespace Infrastructure.Repositories
     // class working on sql database, more specifically on products table
     public class SQLProductsRepository : IProductsRepository
     {
-        private readonly FitnessPlannerContext context;
-        public SQLProductsRepository(FitnessPlannerContext _context)
+        private readonly FitnessPlannerContext _context;
+        public SQLProductsRepository(FitnessPlannerContext context)
         {
-            context = _context;
+            _context = context;
         }
         public IQueryable<Product> GetAllProducts()
         {
-            return context.Products.AsQueryable();
+            return _context.Products.AsQueryable();
         }
         public async Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {
-            var products = context.Products
-                .Where(m => m.calories <= range.maxCalories && m.calories >= range.minCalories && m.protein <= range.maxProtein &&
-                    m.protein >= range.minProtein && m.carbohydrates >= range.minCarbohydrates && m.carbohydrates <= range.maxCarbohydrates &&
-                    m.fat >= range.minFat && m.fat <= range.maxFat)
+            var products = _context.Products
+                .Where(m => m.Calories <= range.MaxCalories && m.Calories >= range.MinCalories && m.Protein <= range.MaxProtein &&
+                    m.Protein >= range.MinProtein && m.Carbohydrates >= range.MinCarbohydrates && m.Carbohydrates <= range.MaxCarbohydrates &&
+                    m.Fat >= range.MinFat && m.Fat <= range.MaxFat)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize);
 
-            SearchByName(ref products, range.name);
+            SearchByName(ref products, range.Name);
 
             if (ascendingSort == null)
                 return await products.ToListAsync();
             else if ((bool)ascendingSort)
-                return await products.OrderBy(p => p.name).ToListAsync();
+                return await products.OrderBy(p => p.Name).ToListAsync();
             else
-                return await products.OrderByDescending(p => p.name).ToListAsync();         
+                return await products.OrderByDescending(p => p.Name).ToListAsync();         
         }
-        public async Task<Product> GetProductByIdAsync(Guid _id)
+        public async Task<Product> GetProductByIdAsync(Guid id)
         {
-            return await context.Products.SingleOrDefaultAsync(x => x.id == _id);
+            return await _context.Products.SingleOrDefaultAsync(x => x.Id == id);
         }
         public async Task AddProductAsync(Product product)
         {
-            context.Products.Add(product);
-            await context.SaveChangesAsync();
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-        
         public async Task UpdateProductAsync(Product product)
         {
-            context.Products.Update(product);
-            await context.SaveChangesAsync();
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-
         public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
         {
-            var product = await context.Products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             patchedProduct.ApplyTo(product);
 
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         public async Task DeleteProductAsync(Product product)
         {
-            context.Products.Remove(product);
-            await context.SaveChangesAsync();
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
         public async Task<int> CountProductsAsync()
         {
-            return await context.Products.CountAsync();
+            return await _context.Products.CountAsync();
         }
         private void SearchByName(ref IQueryable<Product> products, string nameOfProduct)
         {
             if (!products.Any() || string.IsNullOrWhiteSpace(nameOfProduct))
                 return;
 
-            products = products.Where(m => m.name.ToLower().Contains(nameOfProduct.Trim().ToLower()));
+            products = products.Where(m => m.Name.ToLower().Contains(nameOfProduct.Trim().ToLower()));
         }
-
     }
 }

@@ -24,14 +24,13 @@ namespace Infrastructure.Data
 
             foreach (var entityEntry in entries)
             {
-                ((AuditableEntity)entityEntry.Entity).lastModified = DateTime.UtcNow;
+                ((AuditableEntity)entityEntry.Entity).LastModified = DateTime.UtcNow;
 
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((AuditableEntity)entityEntry.Entity).created = DateTime.UtcNow;
+                    ((AuditableEntity)entityEntry.Entity).Created = DateTime.UtcNow;
                 }
             }
-
             return await base.SaveChangesAsync();
         }
     }

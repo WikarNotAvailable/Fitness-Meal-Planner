@@ -12,7 +12,6 @@ using System.IO;
 using WebAPI.Filters;
 using WebAPI.Helpers;
 using WebAPI.Wrappers;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers
 {
@@ -22,22 +21,22 @@ namespace WebAPI.Controllers
     [Route("meals")]
     public class MealsController : ControllerBase
     {
-        private readonly IMealsService mealsService;
-        private readonly IWebHostEnvironment webHostEnvironment;
-        private readonly ILogger<MealsController> logger;
-        public MealsController(IMealsService _service, IWebHostEnvironment _webHostEnvironment, ILogger<MealsController> _logger)
+        private readonly IMealsService _mealsService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ILogger<MealsController> _logger;
+        public MealsController(IMealsService service, IWebHostEnvironment webHostEnvironment, ILogger<MealsController> logger)
         {
-            mealsService = _service;
-            webHostEnvironment = _webHostEnvironment;
-            logger = _logger;
+            _mealsService = service;
+            _webHostEnvironment = webHostEnvironment;
+            _logger = logger;
         }
         [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<MealDto> GetAllMeals()
         {
-            logger.LogInformation("Getting all meals from database as queryable.");
-            return mealsService.GetAllMeals();
+            _logger.LogInformation("Getting all meals from database as queryable.");
+            return _mealsService.GetAllMeals();
         }
         [AllowAnonymous]
         [HttpGet]
@@ -47,15 +46,15 @@ namespace WebAPI.Controllers
             if (!nutritionValuesFilter.ValidFilterValues())
                 return BadRequest("Invalid range of nutrition values");
 
-            var nutritionRange = new NutritionRange(nutritionValuesFilter.minCalories, nutritionValuesFilter.maxCalories,
-                nutritionValuesFilter.minProtein, nutritionValuesFilter.maxProtein, nutritionValuesFilter.minCarbohydrates,
-                nutritionValuesFilter.maxCarbohydrates, nutritionValuesFilter.minFat, nutritionValuesFilter.maxFat, nutritionValuesFilter.name);
+            var nutritionRange = new NutritionRange(nutritionValuesFilter.MinCalories, nutritionValuesFilter.MaxCalories,
+                nutritionValuesFilter.MinProtein, nutritionValuesFilter.MaxProtein, nutritionValuesFilter.MinCarbohydrates,
+                nutritionValuesFilter.MaxCarbohydrates, nutritionValuesFilter.MinFat, nutritionValuesFilter.MaxFat, nutritionValuesFilter.Name);
 
-            var validPaginationFilter = new PaginationFilter(paginationFilter.pageNumber, paginationFilter.pageSize);
+            var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
-            var meals = await mealsService.GetMealsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize, nutritionRange, ascendingSort);
+            var meals = await _mealsService.GetMealsPagedAsync(validPaginationFilter.PageNumber, validPaginationFilter.PageSize, nutritionRange, ascendingSort);
 
-            var totalRecords = await mealsService.CountMealsAsync();
+            var totalRecords = await _mealsService.CountMealsAsync();
 
             return Ok(PaginationHelper.CreatePagedResponse(meals, validPaginationFilter, totalRecords));
         }
@@ -63,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MealDto>> GetMeal(Guid id)
         {
-            var meal = await mealsService.GetMealByIdAsync(id);
+            var meal = await _mealsService.GetMealByIdAsync(id);
 
             if (meal == null)
                 return NotFound();
@@ -75,83 +74,83 @@ namespace WebAPI.Controllers
         public async Task<ActionResult> AddMeal([FromForm]CreateMealDto newMeal)
         {
             string mealPhotoPath;
-            if(newMeal.image == null || newMeal.image.Length == 0)
+            if(newMeal.Image == null || newMeal.Image.Length == 0)
             {
                 mealPhotoPath = "";
             }
             else
             {
                 string uniqueID = Guid.NewGuid().ToString();
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + newMeal.image.FileName);
+                var path = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + newMeal.Image.FileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    await newMeal.image.CopyToAsync(stream);
+                    await newMeal.Image.CopyToAsync(stream);
                     stream.Close();
                 }
                mealPhotoPath = path;
             }
-            var meal = await mealsService.AddMealAsync(newMeal, mealPhotoPath);
-            return Created($"/meals.{meal.id}", new Response<MealDto>(meal));
+            var meal = await _mealsService.AddMealAsync(newMeal, mealPhotoPath);
+            return Created($"/meals.{meal.Id}", new Response<MealDto>(meal));
         }
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateMeal([FromForm]UpdateMealDto updatedMeal, Guid id)
         {
-            var meal = await mealsService.GetMealByIdAsync(id);
+            var meal = await _mealsService.GetMealByIdAsync(id);
 
             if (meal == null)
                 return NotFound();
 
-            var mealPhotoPath = await mealsService.GetPathOfMealImage(id);
+            var mealPhotoPath = await _mealsService.GetPathOfMealImage(id);
             if (System.IO.File.Exists(mealPhotoPath))
                 System.IO.File.Delete(mealPhotoPath);
 
-            if (updatedMeal.image == null || updatedMeal.image.Length == 0)
+            if (updatedMeal.Image == null || updatedMeal.Image.Length == 0)
             {
                 mealPhotoPath = "";
             }
             else
             {
                 string uniqueID = Guid.NewGuid().ToString();
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + updatedMeal.image.FileName);
+                var path = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + updatedMeal.Image.FileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    await updatedMeal.image.CopyToAsync(stream);
+                    await updatedMeal.Image.CopyToAsync(stream);
                     stream.Close();
                 }
                 mealPhotoPath = path;
             }
-            await mealsService.UpdateMealAsync(updatedMeal, id, mealPhotoPath);
+            await _mealsService.UpdateMealAsync(updatedMeal, id, mealPhotoPath);
             return NoContent();
         }
         [Authorize]
         [HttpPatch("{id}")]
         public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedMeal, Guid id)
         {
-            var meal = await mealsService.GetMealByIdAsync(id);
+            var meal = await _mealsService.GetMealByIdAsync(id);
 
             if (meal == null)
                 return NotFound();
 
-            await mealsService.PatchMealAsync(patchedMeal, id);
+            await _mealsService.PatchMealAsync(patchedMeal, id);
             return NoContent();
         }
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMeal(Guid id)
         {
-            var meal = await mealsService.GetMealByIdAsync(id);
+            var meal = await _mealsService.GetMealByIdAsync(id);
 
             if (meal == null)
                 return NotFound();
 
-            var mealPhotoPath = await mealsService.GetPathOfMealImage(id);
+            var mealPhotoPath = await _mealsService.GetPathOfMealImage(id);
             if (System.IO.File.Exists(mealPhotoPath))
                 System.IO.File.Delete(mealPhotoPath);
 
-            await mealsService.DeleteMealAsync(id);
+            await _mealsService.DeleteMealAsync(id);
             return NoContent();
         }
     }

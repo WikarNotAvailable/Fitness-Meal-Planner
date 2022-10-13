@@ -19,21 +19,21 @@ namespace WebAPI.Controllers
     [Route("products")]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductsService productsService;
-        private readonly IWebHostEnvironment webHostEnvironment;
-        private readonly ILogger<ProductsController> loger;
-        public ProductsController(IProductsService _productsService, IWebHostEnvironment _webHostEnvironment, ILogger<ProductsController> _loger)
+        private readonly IProductsService _productsService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ILogger<ProductsController> _loger;
+        public ProductsController(IProductsService productsService, IWebHostEnvironment webHostEnvironment, ILogger<ProductsController> loger)
         {
-            productsService = _productsService;
-            webHostEnvironment = _webHostEnvironment;
-            loger = _loger;
+            _productsService = productsService;
+            _webHostEnvironment = webHostEnvironment;
+            _loger = loger;
         }
         [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<ProductDto> GetAllProducts()
         {
-            return productsService.GetAllProducts();
+            return _productsService.GetAllProducts();
         }
         [AllowAnonymous]
         [HttpGet]
@@ -43,15 +43,15 @@ namespace WebAPI.Controllers
             if (!nutritionValuesFilter.ValidFilterValues())
                 return BadRequest("Invalid range of nutrition values");
 
-            var nutritionRange = new NutritionRange(nutritionValuesFilter.minCalories, nutritionValuesFilter.maxCalories,
-                nutritionValuesFilter.minProtein, nutritionValuesFilter.maxProtein, nutritionValuesFilter.minCarbohydrates,
-                nutritionValuesFilter.maxCarbohydrates, nutritionValuesFilter.minFat, nutritionValuesFilter.maxFat, nutritionValuesFilter.name);
+            var nutritionRange = new NutritionRange(nutritionValuesFilter.MinCalories, nutritionValuesFilter.MaxCalories,
+                nutritionValuesFilter.MinProtein, nutritionValuesFilter.MaxProtein, nutritionValuesFilter.MinCarbohydrates,
+                nutritionValuesFilter.MaxCarbohydrates, nutritionValuesFilter.MinFat, nutritionValuesFilter.MaxFat, nutritionValuesFilter.Name);
 
-            var validPaginationFilter = new PaginationFilter(paginationFilter.pageNumber, paginationFilter.pageSize);
+            var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
-            var products = await productsService.GetProductsPagedAsync(validPaginationFilter.pageNumber, validPaginationFilter.pageSize, nutritionRange, ascendingSorting);
+            var products = await _productsService.GetProductsPagedAsync(validPaginationFilter.PageNumber, validPaginationFilter.PageSize, nutritionRange, ascendingSorting);
 
-            var totalRecords = await productsService.CountProductsAsync();
+            var totalRecords = await _productsService.CountProductsAsync();
 
             return Ok(PaginationHelper.CreatePagedResponse(products, validPaginationFilter, totalRecords));
         }
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
         {
-            var product = await productsService.GetProductByIdAsync(id);
+            var product = await _productsService.GetProductByIdAsync(id);
 
             if (product == null)
                 return NotFound();
@@ -72,84 +72,84 @@ namespace WebAPI.Controllers
         {
             string productPhotoPath;
 
-            if (newProduct.image == null || newProduct.image.Length == 0)
+            if (newProduct.Image == null || newProduct.Image.Length == 0)
             {
                 productPhotoPath = "";
             }
             else
             {
                 string uniqueID = Guid.NewGuid().ToString();
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + newProduct.image.FileName);
+                var path = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + newProduct.Image.FileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    await newProduct.image.CopyToAsync(stream);
+                    await newProduct.Image.CopyToAsync(stream);
                     stream.Close();
                 }
                 productPhotoPath = path;
             }
 
-            var product = await productsService.AddProductAsync(newProduct, productPhotoPath);
-            return Created($"/products.{product.id}", new Response<ProductDto>(product));     
+            var product = await _productsService.AddProductAsync(newProduct, productPhotoPath);
+            return Created($"/products.{product.Id}", new Response<ProductDto>(product));     
         }
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProduct ([FromForm]UpdateProductDto updatedProduct, Guid id)
         {
-            var product = await productsService.GetProductByIdAsync(id);
+            var product = await _productsService.GetProductByIdAsync(id);
 
             if (product == null)
                 return NotFound();
 
-            string productPhotoPath = await productsService.GetPathOfProductImage(id);
+            string productPhotoPath = await _productsService.GetPathOfProductImage(id);
             if (System.IO.File.Exists(productPhotoPath))
                 System.IO.File.Delete(productPhotoPath);
 
-            if (updatedProduct.image == null || updatedProduct.image.Length == 0)
+            if (updatedProduct.Image == null || updatedProduct.Image.Length == 0)
             {
                 productPhotoPath = "";
             }
             else
             {
                 string uniqueID = Guid.NewGuid().ToString();
-                var path = Path.Combine(webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + updatedProduct.image.FileName);
+                var path = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedImages", uniqueID + updatedProduct.Image.FileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    await updatedProduct.image.CopyToAsync(stream);
+                    await updatedProduct.Image.CopyToAsync(stream);
                     stream.Close();
                 }
                 productPhotoPath = path;
             }
 
-            await productsService.UpdateProductAsync(updatedProduct, id, productPhotoPath);
+            await _productsService.UpdateProductAsync(updatedProduct, id, productPhotoPath);
             return NoContent();
         }
         [Authorize]
         [HttpPatch("{id}")]
         public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedProduct, Guid id)
         {
-            var product = await productsService.GetProductByIdAsync(id);
+            var product = await _productsService.GetProductByIdAsync(id);
 
             if (product == null)
                 return NotFound();
 
-            await productsService.PatchProductAsync(patchedProduct, id);
+            await _productsService.PatchProductAsync(patchedProduct, id);
             return NoContent();
         }
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct (Guid id)
         {
-            var product = await productsService.GetProductByIdAsync(id);
+            var product = await _productsService.GetProductByIdAsync(id);
             if (product == null)
                 return NotFound();
 
-            string productPhotoPath = await productsService.GetPathOfProductImage(id);
+            string productPhotoPath = await _productsService.GetPathOfProductImage(id);
             if (System.IO.File.Exists(productPhotoPath))
                 System.IO.File.Delete(productPhotoPath);
 
-            await productsService.DeleteProductAsync(id);
+            await _productsService.DeleteProductAsync(id);
             return NoContent();
         }
     }

@@ -21,12 +21,11 @@ namespace Application.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim(ClaimTypes.NameIdentifier, userInfo.username),
-                new Claim(ClaimTypes.Email, userInfo.emailAddress),
-                new Claim(ClaimTypes.Role, userInfo.role),
+                new Claim(ClaimTypes.NameIdentifier, userInfo.Username),
+                new Claim(ClaimTypes.Email, userInfo.EmailAddress),
+                new Claim(ClaimTypes.Role, userInfo.Role),
                 new Claim("Date", DateTime.Now.ToString())
             };
-
 
             var token = new JwtSecurityToken(config["Jwt:Issuer"],
               config["Jwt:Issuer"],

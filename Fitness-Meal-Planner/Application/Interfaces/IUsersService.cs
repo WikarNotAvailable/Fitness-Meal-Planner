@@ -11,10 +11,10 @@ namespace Application.Interfaces
     public interface IUsersService
     {
         Task<UserDto> GetUserAsync(LoginDto userCredentials);
-        Task<UserDto> GetUserByUsernameAsync(string _username);
+        Task<UserDto> GetUserByUsernameAsync(string username);
         Task<UserDto> AddUserAsync(RegisterDto userDto);
-        Task ChangePasswordAsync(string _username, string _password);
-        Task ChangeEmailAsync (string _username, string _email);
-        Task DeleteUserAsync (string _username);
+        Task ChangePasswordAsync(string username, string password);
+        Task ChangeEmailAsync (string username, string email);
+        Task DeleteUserAsync (string username);
     }
 }

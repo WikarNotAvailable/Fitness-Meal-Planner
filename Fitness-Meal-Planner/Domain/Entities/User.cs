@@ -16,20 +16,20 @@ namespace Domain.Entities
         [Key]
         [Required]
         [MaxLength(20)]
-        public string username { get; init; }
+        public string Username { get; init; }
         [Required]
         [MaxLength(20)]
-        public string password { get; init; }
+        public string Password { get; init; }
         [Required]
         [MaxLength(40)]
-        public string emailAddress { get; init; }
+        public string EmailAddress { get; init; }
         [Required]
         [MaxLength(20)]
-        public string role { get; init; }
+        public string Role { get; init; }
         public User() { }
-        public User(string _username, string _password, string _emailAddress, string _role)
+        public User(string username, string password, string emailAddress, string role)
         {
-            (username, password, emailAddress, role) = (_username, _password, _emailAddress, _role);
+            (Username, Password, EmailAddress, Role) = (username, password, emailAddress, role);
         }
     }
 }

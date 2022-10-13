@@ -11,27 +11,27 @@ namespace WebAPI.Controllers
     [Route("auth")]
     public class AunthenticationController : ControllerBase
     {
-        private readonly IUsersService usersService;
-        private readonly ITokenService tokenService;
-        private readonly IConfiguration config;
-        private readonly ILogger<AunthenticationController> loger;
-        public AunthenticationController(IUsersService _usersService, ITokenService _tokenService, IConfiguration _config, ILogger<AunthenticationController> _loger)
+        private readonly IUsersService _usersService;
+        private readonly ITokenService _tokenService;
+        private readonly IConfiguration _config;
+        private readonly ILogger<AunthenticationController> _loger;
+        public AunthenticationController(IUsersService usersService, ITokenService tokenService, IConfiguration config, ILogger<AunthenticationController> loger)
         {
-            usersService = _usersService;
-            tokenService = _tokenService;
-            config = _config;
-            loger = _loger;
+            _usersService = usersService;
+            _tokenService = tokenService;
+            _config = config;
+            _loger = loger;
         }
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto userLoginCredentials)
         {
-            var user = await usersService.GetUserAsync(userLoginCredentials);
+            var user = await _usersService.GetUserAsync(userLoginCredentials);
             if (user == null)
                 return Unauthorized();
             else
             {
-                var tokenString = tokenService.GenerateJWT(user, config);
+                var tokenString = _tokenService.GenerateJWT(user, _config);
                 return Ok(new { token = tokenString });
             }
         }
@@ -39,15 +39,14 @@ namespace WebAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto userInfo)
         {
-            if (userInfo.emailAddress == "" || userInfo.username == "" || userInfo.password == "")
+            if (userInfo.EmailAddress == "" || userInfo.Username == "" || userInfo.Password == "")
                 return BadRequest("You have to fill all fields!");
 
-            var user = await usersService.GetUserByUsernameAsync(userInfo.username);
+            var user = await _usersService.GetUserByUsernameAsync(userInfo.Username);
             if (user != null)
                 return BadRequest("This username has been already taken!");
 
-            return Ok(await usersService.AddUserAsync(userInfo));
-
+            return Ok(await _usersService.AddUserAsync(userInfo));
         }
         [AllowAnonymous]
         [HttpPut("changePassword/{username}")]
@@ -56,11 +55,11 @@ namespace WebAPI.Controllers
             if (username == null || newPassword == null)
                 return BadRequest("You have to fill all fields!");
 
-            var user = await usersService.GetUserByUsernameAsync(username);
+            var user = await _usersService.GetUserByUsernameAsync(username);
             if (user == null)
                 return NotFound();
 
-            await usersService.ChangePasswordAsync(username, newPassword);
+            await _usersService.ChangePasswordAsync(username, newPassword);
             return NoContent();
         }
         [AllowAnonymous]
@@ -70,18 +69,18 @@ namespace WebAPI.Controllers
             if (username == null || email == null)
                 return BadRequest("You have to fill all fields");
 
-            var user = await usersService.GetUserByUsernameAsync(username);
+            var user = await _usersService.GetUserByUsernameAsync(username);
             if (user == null)
                 return NotFound();
 
-            await usersService.ChangeEmailAsync(username, email);
+            await _usersService.ChangeEmailAsync(username, email);
             return NoContent();
         }
         [Authorize]
         [HttpGet("{username}")]
         public async Task<IActionResult> GetUser(string username)
         {
-            var user = await usersService.GetUserByUsernameAsync(username);
+            var user = await _usersService.GetUserByUsernameAsync(username);
             if (user == null)
                 return NotFound();
 
@@ -91,11 +90,11 @@ namespace WebAPI.Controllers
         [HttpDelete("{username}")]
         public async Task<IActionResult> DeleteUser(string username)
         {
-            var user = await usersService.GetUserByUsernameAsync(username);
+            var user = await _usersService.GetUserByUsernameAsync(username);
             if (user == null)
                 return NotFound();
 
-            await usersService.DeleteUserAsync(username);
+            await _usersService.DeleteUserAsync(username);
             return NoContent();
         }
     }

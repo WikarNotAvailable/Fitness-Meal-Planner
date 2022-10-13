@@ -10,13 +10,13 @@ namespace Application.Dtos.UserDtos
     //dto used for showing info of user
     public record UserDto
     {
-        public string username { get; init; }
-        public string emailAddress { get; init; }
-        public string role { get; init; }
+        public string Username { get; init; }
+        public string EmailAddress { get; init; }
+        public string Role { get; init; }
         UserDto() { }
-        UserDto(string _username, string _emailAddress, string _role)
+        UserDto(string username, string emailAddress, string role)
         {
-            (username, emailAddress, role) = (_username, _emailAddress, _role);
+            (Username, EmailAddress, Role) = (username, emailAddress, role);
         }
     }
 }

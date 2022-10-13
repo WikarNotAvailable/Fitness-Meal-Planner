@@ -9,9 +9,9 @@ namespace Application.Dtos.UserDtos
     //dto used for registration of users
     public record RegisterDto
     {
-        public string username { get; init; }
-        public string password { get; init; }
-        public string emailAddress { get; init; }
-        public string role { get; init; }
+        public string Username { get; init; }
+        public string Password { get; init; }
+        public string EmailAddress { get; init; }
+        public string Role { get; init; }
     }
 }

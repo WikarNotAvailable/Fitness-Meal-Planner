@@ -4,17 +4,17 @@
     // basic wrapper
     public class Response<T>
     {
-        public T data { get; set; }
-        public bool succeeded { get; set; }
+        public T Data { get; set; }
+        public bool Succeeded { get; set; }
         public Response()
         {
 
         }
 
-        public Response(T _data)
+        public Response(T data)
         {
-            data = _data;
-            succeeded = true;
+            Data = data;
+            Succeeded = true;
         }
     }
 }

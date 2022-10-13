@@ -14,7 +14,7 @@ namespace Domain.Interfaces
     {
         IQueryable<Meal> GetAllMeals();
         Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort);
-        Task<Meal> GetMealByIdAsync(Guid _id);
+        Task<Meal> GetMealByIdAsync(Guid id);
         Task AddMealAsync(Meal meal);
         Task UpdateMealAsync(Meal meal);
         Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id);

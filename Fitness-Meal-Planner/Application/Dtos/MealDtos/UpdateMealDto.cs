@@ -10,14 +10,14 @@ namespace Application.Dtos.MealDtos
 {
     public record UpdateMealDto
     {
-        public string name { get; init; }
-        public int weightInGrams { get; init; }
-        public decimal calories { get; init; }
-        public decimal protein { get; init; }
-        public decimal carbohydrates { get; init; }
-        public decimal fat { get; init; }
-        public List<Ingredient>? ingredientsList { get; init; }
-        public string recipe { get; init; }
-        public IFormFile? image { get; init; }
+        public string Name { get; init; }
+        public int WeightInGrams { get; init; }
+        public decimal Calories { get; init; }
+        public decimal Protein { get; init; }
+        public decimal Carbohydrates { get; init; }
+        public decimal Fat { get; init; }
+        public List<Ingredient>? IngredientsList { get; init; }
+        public string Recipe { get; init; }
+        public IFormFile? Image { get; init; }
     }
 }

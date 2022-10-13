@@ -21,15 +21,15 @@ namespace Application.Mappings
             => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Product, ProductDto>();
-                cfg.CreateMap<CreateProductDto, Product>().ConstructUsing(x => new Product(x.name, x.weightInGrams, x.calories, x.protein,
-                    x.carbohydrates, x.fat, x.ingredients, x.description));
+                cfg.CreateMap<CreateProductDto, Product>().ConstructUsing(x => new Product(x.Name, x.WeightInGrams, x.Calories, x.Protein,
+                    x.Carbohydrates, x.Fat, x.Ingredients, x.Description));
                 cfg.CreateMap<UpdateProductDto, Product>();
-                cfg.CreateMap<Meal, MealDto>().ConstructUsing(x => new MealDto(x.id, x.name, x.weightInGrams, x.calories, x.protein, x.carbohydrates,
-                    x.fat, IngredientsConverter.stringToList(x.ingredients), x.recipe)); 
-                cfg.CreateMap<CreateMealDto, Meal>().ConstructUsing(x => new Meal(x.name, x.weightInGrams, x.calories, x.protein, x.carbohydrates,
-                    x.fat, x.ingredientsList, x.recipe));
-                cfg.CreateMap<UpdateMealDto, Meal>().ForMember(dest => dest.ingredients, 
-                    opt => opt.MapFrom(src => IngredientsConverter.listToString(src.ingredientsList)));
+                cfg.CreateMap<Meal, MealDto>().ConstructUsing(x => new MealDto(x.Id, x.Name, x.WeightInGrams, x.Calories, x.Protein, x.Carbohydrates,
+                    x.Fat, IngredientsConverter.stringToList(x.Ingredients), x.Recipe)); 
+                cfg.CreateMap<CreateMealDto, Meal>().ConstructUsing(x => new Meal(x.Name, x.WeightInGrams, x.Calories, x.Protein, x.Carbohydrates,
+                    x.Fat, x.IngredientsList, x.Recipe));
+                cfg.CreateMap<UpdateMealDto, Meal>().ForMember(dest => dest.Ingredients, 
+                    opt => opt.MapFrom(src => IngredientsConverter.listToString(src.IngredientsList)));
                 cfg.CreateMap<User, UserDto>();
                 cfg.CreateMap<RegisterDto, User>();
                 cfg.CreateMap<User, User>();

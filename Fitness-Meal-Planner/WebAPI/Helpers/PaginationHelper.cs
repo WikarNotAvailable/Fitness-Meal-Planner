@@ -8,15 +8,15 @@ namespace WebAPI.Helpers
     {
         public static PagedResponse<IEnumerable<T>> CreatePagedResponse<T>(IEnumerable<T> pagedData, PaginationFilter validPaginationFilter, int totalRecords)
         {
-            var response = new PagedResponse<IEnumerable<T>>(pagedData, validPaginationFilter.pageNumber, validPaginationFilter.pageSize);
-            var totalPages = ((double)totalRecords / (double)validPaginationFilter.pageSize);
+            var response = new PagedResponse<IEnumerable<T>>(pagedData, validPaginationFilter.PageNumber, validPaginationFilter.PageSize);
+            var totalPages = ((double)totalRecords / (double)validPaginationFilter.PageSize);
             var roundedTotalPages = Convert.ToInt32(Math.Ceiling(totalPages));
-            int currentPage = validPaginationFilter.pageNumber;
+            int currentPage = validPaginationFilter.PageNumber;
 
-            response.totalPages = roundedTotalPages;
-            response.totalRecords = totalRecords;
-            response.previousPage = currentPage > 1 ? true : false;
-            response.nextPage = currentPage < roundedTotalPages ? true : false;
+            response.TotalPages = roundedTotalPages;
+            response.TotalRecords = totalRecords;
+            response.PreviousPage = currentPage > 1 ? true : false;
+            response.NextPage = currentPage < roundedTotalPages ? true : false;
 
             return response;
         }

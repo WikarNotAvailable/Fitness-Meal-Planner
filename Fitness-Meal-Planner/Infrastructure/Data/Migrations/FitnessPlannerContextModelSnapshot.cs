@@ -24,152 +24,152 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Meal", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("calories")
+                    b.Property<decimal>("Calories")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("carbohydrates")
+                    b.Property<decimal>("Carbohydrates")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("created")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("createdBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("fat")
+                    b.Property<decimal>("Fat")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ingredients")
+                    b.Property<string>("Ingredients")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime?>("lastModified")
+                    b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("lastModifiedBy")
+                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("mealPhotoPath")
+                    b.Property<string>("MealPhotoPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("protein")
+                    b.Property<decimal>("Protein")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("recipe")
+                    b.Property<string>("Recipe")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("weightInGrams")
+                    b.Property<int>("WeightInGrams")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Meals");
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("calories")
+                    b.Property<decimal>("Calories")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("carbohydrates")
+                    b.Property<decimal>("Carbohydrates")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("created")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("createdBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("description")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<decimal>("fat")
+                    b.Property<decimal>("Fat")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ingredients")
+                    b.Property<string>("Ingredients")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime?>("lastModified")
+                    b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("lastModifiedBy")
+                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("productPhotoPath")
+                    b.Property<string>("ProductPhotoPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("protein")
+                    b.Property<decimal>("Protein")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("weightInGrams")
+                    b.Property<int>("WeightInGrams")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.Property<string>("username")
+                    b.Property<string>("Username")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime>("created")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("createdBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("emailAddress")
+                    b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<DateTime?>("lastModified")
+                    b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("lastModifiedBy")
+                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("role")
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("username");
+                    b.HasKey("Username");
 
                     b.ToTable("Users");
                 });

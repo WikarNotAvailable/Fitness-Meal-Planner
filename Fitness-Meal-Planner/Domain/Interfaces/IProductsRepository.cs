@@ -14,7 +14,7 @@ namespace Domain.Interfaces
     {
         IQueryable<Product> GetAllProducts();
         Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting);
-        Task<Product> GetProductByIdAsync(Guid _id);
+        Task<Product> GetProductByIdAsync(Guid id);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);
         Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id);

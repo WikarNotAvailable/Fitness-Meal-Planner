@@ -14,32 +14,32 @@ namespace Domain.Entities
     public record Product : AuditableEntity
     {
         [Key]
-        public Guid id { get; init; }
+        public Guid Id { get; init; }
         [Required]
         [MaxLength(100)]
-        public string name { get; init; }
+        public string Name { get; init; }
         [Required]
-        public int weightInGrams { get; init; }
+        public int WeightInGrams { get; init; }
         [Required]
-        public decimal calories { get; init; }
+        public decimal Calories { get; init; }
         [Required]
-        public decimal protein { get; init; }
+        public decimal Protein { get; init; }
         [Required]
-        public decimal carbohydrates { get; init; }
+        public decimal Carbohydrates { get; init; }
         [Required]
-        public decimal fat { get; init; }
+        public decimal Fat { get; init; }
         [MaxLength(1000)]
-        public string ingredients { get; init; }
+        public string Ingredients { get; init; }
         [MaxLength(500)]
-        public string description { get; init; }
-        public string productPhotoPath { get; set; }
+        public string Description { get; init; }
+        public string ProductPhotoPath { get; set; }
         public Product() {}
-        public Product(string _name, int _weight, decimal _calories, decimal _protein, 
-            decimal _carbohydrates, decimal _fat, string _ingredients, string _description) 
+        public Product(string name, int weight, decimal calories, decimal protein, 
+            decimal carbohydrates, decimal fat, string ingredients, string description) 
         {
-            id = Guid.NewGuid();
-            (name, weightInGrams, calories, protein, carbohydrates, fat, ingredients, description) = (_name, _weight, _calories, _protein,
-                _carbohydrates, _fat, _ingredients, _description);
+            Id = Guid.NewGuid();
+            (Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, Ingredients, Description) = (name, weight, calories, protein,
+                carbohydrates, fat, ingredients, description);
         }
     }
 }

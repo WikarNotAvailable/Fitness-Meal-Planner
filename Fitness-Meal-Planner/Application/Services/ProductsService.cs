@@ -16,64 +16,61 @@ namespace Application.Services
     //service operating on a products' repository, products controller is using its functions
     public class ProductsService : IProductsService
     {
-        private readonly IProductsRepository repository;
-        private readonly IMapper mapper;
-        public ProductsService(IProductsRepository _repository, IMapper _mapper)
+        private readonly IProductsRepository _repository;
+        private readonly IMapper _mapper;
+        public ProductsService(IProductsRepository repository, IMapper mapper)
         {
-            repository = _repository;
-            mapper = _mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
-
         public IQueryable<ProductDto> GetAllProducts()
         {
-            var products = repository.GetAllProducts();
-            return mapper.ProjectTo<ProductDto>(products);
+            var products = _repository.GetAllProducts();
+            return _mapper.ProjectTo<ProductDto>(products);
         }
         public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting)
         {
-            var products = await repository.GetProductsPagedAsync(pageNumber, pageSize, range, ascendingSorting);
-            return mapper.Map<IEnumerable<ProductDto>>(products);
+            var products = await _repository.GetProductsPagedAsync(pageNumber, pageSize, range, ascendingSorting);
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
-        public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string _productPhotoPath)
+        public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string productPhotoPath)
         {
-            var product = mapper.Map<Product>(newProduct);
-            product.productPhotoPath = _productPhotoPath;
-            await repository.AddProductAsync(product);
-            return mapper.Map<ProductDto>(product);
+            var product = _mapper.Map<Product>(newProduct);
+            product.ProductPhotoPath = productPhotoPath;
+            await _repository.AddProductAsync(product);
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task<ProductDto> GetProductByIdAsync(Guid id)
         {
-            var product = await repository.GetProductByIdAsync(id);
-            return mapper.Map<ProductDto>(product);
+            var product = await _repository.GetProductByIdAsync(id);
+            return _mapper.Map<ProductDto>(product);
         }
 
-        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id, string _productPhotoPath)
+        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id, string productPhotoPath)
         {
-            var existingProduct = await repository.GetProductByIdAsync(id);
-            var product = mapper.Map(updatedProduct, existingProduct);
-            product.productPhotoPath = _productPhotoPath;
-            await repository.UpdateProductAsync(product);
+            var existingProduct = await _repository.GetProductByIdAsync(id);
+            var product = _mapper.Map(updatedProduct, existingProduct);
+            product.ProductPhotoPath = productPhotoPath;
+            await _repository.UpdateProductAsync(product);
         }
         public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
         {
-            await repository.PatchProductAsync(patchedProduct, id); 
+            await _repository.PatchProductAsync(patchedProduct, id); 
         }
         public async Task DeleteProductAsync(Guid id)
         {
-            var product = await repository.GetProductByIdAsync(id);
-            await repository.DeleteProductAsync(product);
+            var product = await _repository.GetProductByIdAsync(id);
+            await _repository.DeleteProductAsync(product);
         }
         public async Task<int> CountProductsAsync()
         {
-            return await repository.CountProductsAsync();
+            return await _repository.CountProductsAsync();
         }
-
         public async Task<string> GetPathOfProductImage(Guid id)
         {
-            var product = await repository.GetProductByIdAsync(id);
-            return product.productPhotoPath;
+            var product = await _repository.GetProductByIdAsync(id);
+            return product.ProductPhotoPath;
         }
-
     }
 }
