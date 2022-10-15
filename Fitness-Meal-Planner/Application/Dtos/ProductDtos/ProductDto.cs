@@ -22,5 +22,6 @@ namespace Application.Dtos.ProductDtos
         public decimal Fat { get; init; }
         public string Ingredients { get; init; }
         public string Description { get; init; }
+        public string ProductPhotoPath { get; init; }
     }
 }

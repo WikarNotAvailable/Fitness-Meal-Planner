@@ -25,7 +25,7 @@ namespace Application.Mappings
                     x.Carbohydrates, x.Fat, x.Ingredients, x.Description));
                 cfg.CreateMap<UpdateProductDto, Product>();
                 cfg.CreateMap<Meal, MealDto>().ConstructUsing(x => new MealDto(x.Id, x.Name, x.WeightInGrams, x.Calories, x.Protein, x.Carbohydrates,
-                    x.Fat, IngredientsConverter.stringToList(x.Ingredients), x.Recipe)); 
+                    x.Fat, IngredientsConverter.stringToList(x.Ingredients), x.Recipe, x.MealPhotoPath)); 
                 cfg.CreateMap<CreateMealDto, Meal>().ConstructUsing(x => new Meal(x.Name, x.WeightInGrams, x.Calories, x.Protein, x.Carbohydrates,
                     x.Fat, x.IngredientsList, x.Recipe));
                 cfg.CreateMap<UpdateMealDto, Meal>().ForMember(dest => dest.Ingredients, 

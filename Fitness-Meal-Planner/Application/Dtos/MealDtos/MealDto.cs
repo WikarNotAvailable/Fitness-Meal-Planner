@@ -19,11 +19,12 @@ namespace Application.Dtos.MealDtos
         public decimal Fat { get; init; }
         public List<Ingredient>? IngredientsList { get; init; }
         public string Recipe { get; init; }
+        public string MealPhotoPath { get; init; }
         public MealDto(Guid id, string name, int weightInGrams, decimal calories, decimal protein,
-           decimal carbohydrates, decimal fat, List<Ingredient>? ingredientsList, string recipe)
+           decimal carbohydrates, decimal fat, List<Ingredient>? ingredientsList, string recipe, string mealPhotoPath)
         {
-            (Id, Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, IngredientsList, Recipe) = (id, name,
-                weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe);
+            (Id, Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, IngredientsList, Recipe, MealPhotoPath) = (id, name,
+                weightInGrams, calories, protein, carbohydrates, fat, ingredientsList, recipe, mealPhotoPath);
         }
     }
 }
