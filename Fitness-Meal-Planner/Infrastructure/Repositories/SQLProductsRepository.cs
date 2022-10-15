@@ -58,11 +58,8 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-        public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            patchedProduct.ApplyTo(product);
-
+        public async Task SavePatchProductAsync()
+        { 
             await _context.SaveChangesAsync();
         }
         public async Task DeleteProductAsync(Product product)

@@ -3,6 +3,8 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace Application.Services
     {
         private readonly IUsersRepository _repository;
         private readonly IMapper _mapper;
-        public UsersService(IUsersRepository repository, IMapper mapper)
+        private readonly IValidator<User> _validator;
+        public UsersService(IUsersRepository repository, IMapper mapper, IValidator<User> validator)
         {
             _repository = repository;
             _mapper = mapper;
+            _validator = validator;
         }
         public async Task<UserDto> GetUserAsync(LoginDto userCredentials)
         {
@@ -33,10 +37,15 @@ namespace Application.Services
         public async Task<UserDto> AddUserAsync(RegisterDto userDto)
         {
             var newUser = _mapper.Map<User>(userDto);
+
+            ValidationResult result = await _validator.ValidateAsync(newUser);
+            if (!result.IsValid)
+                return null;
+
             await _repository.AddUserAsync(newUser);
             return _mapper.Map<UserDto>(newUser);
         }
-        public async Task ChangePasswordAsync(string _username, string _password)
+        public async Task<UserDto> ChangePasswordAsync(string _username, string _password)
         {
             var user = await _repository.GetUserByUsernameAsync(_username);
             User newUserInfo = new User
@@ -47,9 +56,15 @@ namespace Application.Services
                 Role = user.Role
             };
             var newUser = _mapper.Map(newUserInfo, user);
+
+            ValidationResult result = await _validator.ValidateAsync(newUser);
+            if (!result.IsValid)
+                return null;
+
             await _repository.UpdateUserAsync(newUser);
+            return _mapper.Map<UserDto>(newUser);
         }
-        public async Task ChangeEmailAsync(string _username, string _email)
+        public async Task<UserDto> ChangeEmailAsync(string _username, string _email)
         {
             var user = await _repository.GetUserByUsernameAsync(_username);
             User newUserInfo = new User
@@ -60,7 +75,13 @@ namespace Application.Services
                 Role = user.Role
             };
             var newUser = _mapper.Map(newUserInfo, user);
+
+            ValidationResult result = await _validator.ValidateAsync(newUser);
+            if (!result.IsValid)
+                return null;
+
             await _repository.UpdateUserAsync(newUser);
+            return _mapper.Map<UserDto>(newUser);
         }
         public async Task DeleteUserAsync(string _username)
         {

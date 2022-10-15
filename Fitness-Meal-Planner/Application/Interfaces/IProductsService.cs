@@ -16,8 +16,8 @@ namespace Application.Interfaces
         Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting);
         Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string productPhotoPath);
         Task<ProductDto> GetProductByIdAsync(Guid id);
-        Task UpdateProductAsync (UpdateProductDto updatedProduct, Guid id, string productPhotoPath);
-        Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id);
+        Task<ProductDto> UpdateProductAsync (UpdateProductDto updatedProduct, Guid id, string productPhotoPath);
+        Task<ProductDto> PatchProductAsync(JsonPatchDocument patchedProduct, Guid id);
         Task DeleteProductAsync (Guid id);
         Task<int> CountProductsAsync();
         Task<string> GetPathOfProductImage(Guid id);

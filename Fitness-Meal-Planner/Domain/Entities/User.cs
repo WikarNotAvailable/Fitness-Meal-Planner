@@ -14,17 +14,9 @@ namespace Domain.Entities
     public record User : AuditableEntity
     {
         [Key]
-        [Required]
-        [MaxLength(20)]
         public string Username { get; init; }
-        [Required]
-        [MaxLength(20)]
         public string Password { get; init; }
-        [Required]
-        [MaxLength(40)]
         public string EmailAddress { get; init; }
-        [Required]
-        [MaxLength(20)]
         public string Role { get; init; }
         public User() { }
         public User(string username, string password, string emailAddress, string role)

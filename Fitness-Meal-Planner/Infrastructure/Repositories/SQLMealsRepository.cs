@@ -58,11 +58,8 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-        public async Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
+        public async Task SavePatchMealAsync()
         {
-            var meal = await _context.Meals.FindAsync(id);
-            patchedMeal.ApplyTo(meal);
-
             await _context.SaveChangesAsync();
         }
         public async Task DeleteMealAsync(Meal meal)
@@ -82,7 +79,5 @@ namespace Infrastructure.Repositories
 
             meals = meals.Where(m => m.Name.ToLower().Contains(nameOfMeal.Trim().ToLower()));
         }
-
-
     }
 }

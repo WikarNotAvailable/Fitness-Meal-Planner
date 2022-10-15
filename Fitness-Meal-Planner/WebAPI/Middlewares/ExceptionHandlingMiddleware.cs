@@ -16,6 +16,21 @@ namespace WebAPI.Middlewares
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 await context.Response.WriteAsync(ex.Message);
             }
+            catch(EntityValidatonException ex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await context.Response.WriteAsync(ex.Message);
+            }
+            catch(IncorrectCredentialsException ex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await context.Response.WriteAsync(ex.Message);
+            }
+            catch(InvalidFilterRangesException ex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await context.Response.WriteAsync(ex.Message);
+            }
             catch(Exception ex)
             {
                 context.Response.StatusCode = 500;

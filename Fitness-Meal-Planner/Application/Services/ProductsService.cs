@@ -4,6 +4,8 @@ using AutoMapper;
 using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
@@ -18,10 +20,12 @@ namespace Application.Services
     {
         private readonly IProductsRepository _repository;
         private readonly IMapper _mapper;
-        public ProductsService(IProductsRepository repository, IMapper mapper)
+        private readonly IValidator<Product> _validator;
+        public ProductsService(IProductsRepository repository, IMapper mapper, IValidator<Product> validator)
         {
             _repository = repository;
             _mapper = mapper;
+            _validator = validator;
         }
         public IQueryable<ProductDto> GetAllProducts()
         {
@@ -37,6 +41,11 @@ namespace Application.Services
         {
             var product = _mapper.Map<Product>(newProduct);
             product.ProductPhotoPath = productPhotoPath;
+
+            ValidationResult result = await _validator.ValidateAsync(product);
+            if (!result.IsValid)
+                return null;
+
             await _repository.AddProductAsync(product);
             return _mapper.Map<ProductDto>(product);
         }
@@ -47,16 +56,30 @@ namespace Application.Services
             return _mapper.Map<ProductDto>(product);
         }
 
-        public async Task UpdateProductAsync(UpdateProductDto updatedProduct, Guid id, string productPhotoPath)
+        public async Task<ProductDto> UpdateProductAsync(UpdateProductDto updatedProduct, Guid id, string productPhotoPath)
         {
             var existingProduct = await _repository.GetProductByIdAsync(id);
             var product = _mapper.Map(updatedProduct, existingProduct);
             product.ProductPhotoPath = productPhotoPath;
+
+            ValidationResult result = await _validator.ValidateAsync(product);
+            if (!result.IsValid)
+                return null;
+
             await _repository.UpdateProductAsync(product);
+            return _mapper.Map<ProductDto>(product);
         }
-        public async Task PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
+        public async Task<ProductDto> PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
         {
-            await _repository.PatchProductAsync(patchedProduct, id); 
+            var product = await _repository.GetProductByIdAsync(id);
+            patchedProduct.ApplyTo(product);
+
+            ValidationResult result = await _validator.ValidateAsync(product);
+            if (!result.IsValid)
+                return null;
+
+            await _repository.SavePatchProductAsync();
+            return _mapper.Map<ProductDto>(product);
         }
         public async Task DeleteProductAsync(Guid id)
         {

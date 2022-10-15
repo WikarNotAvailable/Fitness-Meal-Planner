@@ -18,24 +18,13 @@ namespace Domain.Entities
     {
         [Key]
         public Guid Id { get; init; }
-        [Required]
-        [MaxLength(50)]
         public string Name { get; init; }
-        [Required]
         public int WeightInGrams { get; init; }
-        [Required]
         public decimal Calories { get; init; }
-        [Required]
         public decimal Protein { get; init; }
-        [Required]
         public decimal Carbohydrates { get; init; }
-        [Required]
         public decimal Fat { get; init; }
-        [Required]
-        [MaxLength(500)]
         public string Ingredients { get; set; } 
-        [Required]
-        [MaxLength(1000)]
         public string Recipe { get; init; }
         public string MealPhotoPath { get; set; }
         public Meal() { }

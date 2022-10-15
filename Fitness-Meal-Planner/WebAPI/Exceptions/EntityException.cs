@@ -8,4 +8,12 @@
     {
         public EntityNotFoundException(string message) : base(message) { }
     }
+    public class EntityValidatonException : EntityException
+    {
+        public EntityValidatonException(string message) : base(message) { }
+    }
+    public class IncorrectCredentialsException : EntityException
+    {
+        public IncorrectCredentialsException(string message) : base(message) { }
+    }
 }

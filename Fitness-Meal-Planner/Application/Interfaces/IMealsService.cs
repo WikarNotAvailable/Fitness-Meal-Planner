@@ -15,8 +15,8 @@ namespace Application.Interfaces
         Task<IEnumerable<MealDto>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort);
         Task<MealDto> GetMealByIdAsync(Guid id);
         Task<MealDto> AddMealAsync(CreateMealDto newMeal, string mealPhotoPath);
-        Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string mealPhotoPath);
-        Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id);
+        Task<MealDto> UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string mealPhotoPath);
+        Task<MealDto> PatchMealAsync(JsonPatchDocument patchedMeal, Guid id);
         Task DeleteMealAsync(Guid id);
         Task<int> CountMealsAsync();
         Task<string> GetPathOfMealImage(Guid id);

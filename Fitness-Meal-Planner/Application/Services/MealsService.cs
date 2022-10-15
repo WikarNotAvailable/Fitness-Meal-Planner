@@ -5,6 +5,8 @@ using Domain.Additional;
 using Domain.Additional_Structures;
 using Domain.Entities;
 using Domain.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
@@ -19,10 +21,12 @@ namespace Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IMealsRepository _repository;
-        public MealsService(IMapper mapper, IMealsRepository repository)
+        private readonly IValidator<Meal> _validator;
+        public MealsService(IMapper mapper, IMealsRepository repository, IValidator<Meal> validator)
         {
             _mapper = mapper;
             _repository = repository;
+            _validator = validator;
         }
         public IQueryable<MealDto> GetAllMeals()
         {
@@ -43,19 +47,37 @@ namespace Application.Services
         {
             var meal = _mapper.Map<Meal>(newMeal);
             meal.MealPhotoPath = mealImagePath;
+
+            ValidationResult result = await _validator.ValidateAsync(meal);
+            if (!result.IsValid)
+                return null;
+
             await _repository.AddMealAsync(meal);
             return _mapper.Map<MealDto>(meal);
         }
-        public async Task UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string mealPhotoPath)
+        public async Task<MealDto> UpdateMealAsync(UpdateMealDto updatedMeal, Guid id, string mealPhotoPath)
         {
             var existingMeal = await _repository.GetMealByIdAsync(id);
             var meal = _mapper.Map(updatedMeal, existingMeal);
             meal.MealPhotoPath = mealPhotoPath;
+
+            ValidationResult result = await _validator.ValidateAsync(meal);
+            if (!result.IsValid)
+                return null;
+
             await _repository.UpdateMealAsync(meal);
+            return _mapper.Map<MealDto>(meal);
         }
-        public async Task PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
+        public async Task<MealDto> PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
         {
-            await _repository.PatchMealAsync(patchedMeal, id);
+            var meal = await _repository.GetMealByIdAsync(id);
+            patchedMeal.ApplyTo(meal);
+
+            ValidationResult result = await _validator.ValidateAsync(meal);
+            if (!result.IsValid)
+                return null;
+            await _repository.SavePatchMealAsync();
+            return _mapper.Map<MealDto>(meal);
         }
         public async Task DeleteMealAsync(Guid id)
         {
