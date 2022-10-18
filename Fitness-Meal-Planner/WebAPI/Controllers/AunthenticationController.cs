@@ -26,6 +26,7 @@ namespace WebAPI.Controllers
             _logger = logger;
         }
         [AllowAnonymous]
+        [ResponseCache]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto userLoginCredentials)
         {
@@ -112,6 +113,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction($"changeEmail", new Response<UserDto>(newUser));
         }
         [Authorize]
+        [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { "username" })]
         [HttpGet("{username}")]
         public async Task<IActionResult> GetUser(string username)
         {

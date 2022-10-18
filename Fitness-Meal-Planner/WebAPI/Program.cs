@@ -61,4 +61,6 @@ app.UseHealthChecks("/healthUI", new HealthCheckOptions
 
 app.MapHealthChecksUI();
 
+app.UseResponseCaching();
+
 app.Run();

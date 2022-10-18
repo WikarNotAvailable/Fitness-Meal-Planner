@@ -64,6 +64,7 @@ namespace WebAPI.Controllers
             return Ok(PaginationHelper.CreatePagedResponse(products, validPaginationFilter, totalRecords));
         }
         [AllowAnonymous]
+        [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { "id" })]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
         {
