@@ -1,6 +1,5 @@
 ﻿using Application.Dtos.ProductDtos;
 using Domain.Additional_Structures;
-using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,6 @@ namespace Application.Interfaces
         Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string productPhotoPath);
         Task<ProductDto> GetProductByIdAsync(Guid id);
         Task<ProductDto> UpdateProductAsync (UpdateProductDto updatedProduct, Guid id, string productPhotoPath);
-        Task<ProductDto> PatchProductAsync(JsonPatchDocument patchedProduct, Guid id);
         Task DeleteProductAsync (Guid id);
         Task<int> CountProductsAsync();
         Task<string> GetPathOfProductImage(Guid id);

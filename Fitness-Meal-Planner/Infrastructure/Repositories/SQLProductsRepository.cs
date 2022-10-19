@@ -58,10 +58,6 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-        public async Task SavePatchProductAsync()
-        { 
-            await _context.SaveChangesAsync();
-        }
         public async Task DeleteProductAsync(Product product)
         {
             _context.Products.Remove(product);

@@ -21,8 +21,7 @@ namespace WebAPI.Installers
         {
             // Add services to the container.
             builder.Services.AddControllers()
-                .AddNewtonsoftJson()
-                .AddOData(options => options.EnableQueryFeatures());
+                .AddOData(options => options.EnableQueryFeatures());           
 
             builder.Services.AddApiVersioning(x =>
             {

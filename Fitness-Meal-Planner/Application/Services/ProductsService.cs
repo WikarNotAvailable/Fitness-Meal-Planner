@@ -69,18 +69,6 @@ namespace Application.Services
             await _repository.UpdateProductAsync(product);
             return _mapper.Map<ProductDto>(product);
         }
-        public async Task<ProductDto> PatchProductAsync(JsonPatchDocument patchedProduct, Guid id)
-        {
-            var product = await _repository.GetProductByIdAsync(id);
-            patchedProduct.ApplyTo(product);
-
-            ValidationResult result = await _validator.ValidateAsync(product);
-            if (!result.IsValid)
-                return null;
-
-            await _repository.SavePatchProductAsync();
-            return _mapper.Map<ProductDto>(product);
-        }
         public async Task DeleteProductAsync(Guid id)
         {
             var product = await _repository.GetProductByIdAsync(id);

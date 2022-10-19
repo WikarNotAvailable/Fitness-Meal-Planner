@@ -158,29 +158,7 @@ namespace WebAPI.Controllers
 
             return CreatedAtAction("Update", new Response<ProductDto>(newProduct));
         }
-        [Authorize]
-        [HttpPatch("{id}")]
-        public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedProduct, Guid id)
-        {
-            _logger.LogInformation("Patching the product from the database.");
-
-            var product = await _productsService.GetProductByIdAsync(id);
-
-            if (product == null)
-            {
-                _logger.LogError("The product to patch was not found in the database.");
-                throw new EntityNotFoundException("The passed id is wrong.");
-            }
-
-            var newProduct = await _productsService.PatchProductAsync(patchedProduct, id);
-            if (newProduct == null)
-            {
-                _logger.LogError("Patching product has not succeeded.");
-                throw new EntityValidatonException("The patched property is not valid.");
-            }
-
-            return CreatedAtAction("Patch", new Response<ProductDto>(newProduct));
-        }
+       
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct (Guid id)

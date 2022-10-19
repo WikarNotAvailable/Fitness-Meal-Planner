@@ -17,7 +17,6 @@ namespace Domain.Interfaces
         Task<Meal> GetMealByIdAsync(Guid id);
         Task AddMealAsync(Meal meal);
         Task UpdateMealAsync(Meal meal);
-        Task SavePatchMealAsync();
         Task DeleteMealAsync(Meal meal);
         Task<int> CountMealsAsync();
     }

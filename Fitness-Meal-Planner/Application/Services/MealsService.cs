@@ -68,17 +68,6 @@ namespace Application.Services
             await _repository.UpdateMealAsync(meal);
             return _mapper.Map<MealDto>(meal);
         }
-        public async Task<MealDto> PatchMealAsync(JsonPatchDocument patchedMeal, Guid id)
-        {
-            var meal = await _repository.GetMealByIdAsync(id);
-            patchedMeal.ApplyTo(meal);
-
-            ValidationResult result = await _validator.ValidateAsync(meal);
-            if (!result.IsValid)
-                return null;
-            await _repository.SavePatchMealAsync();
-            return _mapper.Map<MealDto>(meal);
-        }
         public async Task DeleteMealAsync(Guid id)
         {
             var meal = await _repository.GetMealByIdAsync(id);
@@ -88,7 +77,6 @@ namespace Application.Services
         {
             return await _repository.CountMealsAsync();
         }
-
         public async Task<string> GetPathOfMealImage(Guid id)
         {
             var meal = await _repository.GetMealByIdAsync(id);

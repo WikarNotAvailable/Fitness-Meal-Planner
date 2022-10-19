@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csp
 		{E10DB19F-D043-4B8C-B1D2-DEB4EBD9BE79} = {E10DB19F-D043-4B8C-B1D2-DEB4EBD9BE79}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fitness-Meal-Planner-Testing", "Fitness-Meal-Planner-Testing\Fitness-Meal-Planner-Testing.csproj", "{8E0DB18D-9646-426F-9B7F-F14214864AC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{31A46282-ECC8-4609-98B3-F2DA8657B3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31A46282-ECC8-4609-98B3-F2DA8657B3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31A46282-ECC8-4609-98B3-F2DA8657B3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E0DB18D-9646-426F-9B7F-F14214864AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E0DB18D-9646-426F-9B7F-F14214864AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E0DB18D-9646-426F-9B7F-F14214864AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E0DB18D-9646-426F-9B7F-F14214864AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,10 +58,6 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
-        public async Task SavePatchMealAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
         public async Task DeleteMealAsync(Meal meal)
         {
             _context.Meals.Remove(meal);

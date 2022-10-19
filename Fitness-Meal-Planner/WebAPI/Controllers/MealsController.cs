@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
-        [AllowAnonymous]
+
         [HttpGet("all")]
         [EnableQuery]
         public IQueryable<MealDto> GetAllMeals()
@@ -159,29 +159,7 @@ namespace WebAPI.Controllers
 
             return CreatedAtAction("Update", new Response<MealDto>(newMeal));
         }
-        [Authorize]
-        [HttpPatch("{id}")]
-        public async Task<ActionResult> PatchMeal(JsonPatchDocument patchedMeal, Guid id)
-        {
-            _logger.LogInformation("Patching the meal from the database.");
-
-            var meal = await _mealsService.GetMealByIdAsync(id);
-
-            if (meal == null)
-            {
-                _logger.LogError("The meal to patch was not found in the database.");
-                throw new EntityNotFoundException("The passed id is wrong.");
-            }
-
-            var newMeal = await _mealsService.PatchMealAsync(patchedMeal, id);
-            if (newMeal == null)
-            {
-                _logger.LogError("Patching meal has not succeeded.");
-                throw new EntityValidatonException("The patched property is not valid.");
-            }
-
-            return CreatedAtAction("Patch", new Response<MealDto>(newMeal));
-        }
+      
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMeal(Guid id)
