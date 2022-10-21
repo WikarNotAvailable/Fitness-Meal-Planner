@@ -14,6 +14,7 @@ namespace Infrastructure.Repositories
     public class SQLUsersRepository : IUsersRepository
     {
         private readonly FitnessPlannerContext _context;
+
         public SQLUsersRepository(FitnessPlannerContext context)
         {
             _context = context;
@@ -28,18 +29,21 @@ namespace Infrastructure.Repositories
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
         }
+
         public async Task AddUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task UpdateUserAsync(User user)
         {
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task DeleteUserAsync(User user)
         {
             _context.Users.Remove(user);

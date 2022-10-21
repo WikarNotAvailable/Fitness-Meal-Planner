@@ -24,12 +24,14 @@ namespace WebAPI.Controllers
         private readonly IProductsService _productsService;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<ProductsController> _logger;
+
         public ProductsController(IProductsService productsService, IWebHostEnvironment webHostEnvironment, ILogger<ProductsController> logger)
         {
             _productsService = productsService;
             _webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
+
         [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
@@ -38,6 +40,7 @@ namespace WebAPI.Controllers
             _logger.LogInformation("Getting all products from the database as queryable.");
             return Ok(_productsService.GetAllProducts());
         }
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetPagedProducts([FromQuery] PaginationFilter paginationFilter,
@@ -63,6 +66,7 @@ namespace WebAPI.Controllers
 
             return Ok(PaginationHelper.CreatePagedResponse(products, validPaginationFilter, totalRecords));
         }
+
         [AllowAnonymous]
         [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { "id" })]
         [HttpGet("{id}")]
@@ -79,6 +83,7 @@ namespace WebAPI.Controllers
 
             return Ok(new Response<ProductDto>(product));
         }
+
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddProduct([FromForm]CreateProductDto newProduct)
@@ -114,6 +119,7 @@ namespace WebAPI.Controllers
 
             return Created($"/products.{product.Id}", new Response<ProductDto>(product));     
         }
+
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProduct ([FromForm]UpdateProductDto updatedProduct, Guid id)

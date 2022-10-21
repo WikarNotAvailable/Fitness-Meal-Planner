@@ -71,6 +71,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             }
             return databaseContext;
         }
+
         [Fact]
         public async void ProductsRepository_GetAllProducts_ReturnsProducts()
         {
@@ -85,6 +86,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().NotBeNull();
             result.Should().HaveCount(3);
         }
+
         [Fact]
         public async void ProductsRepository_GetProductByID_ReturnsProduct()
         {
@@ -100,6 +102,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().NotBeNull();
             result.Should().BeOfType<Product>();
         }
+
         [Fact]
         public async void ProductsRepository_GetProductsPagedAsync_ReturnsProductsFiltered()
         {
@@ -119,6 +122,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().BeOfType<List<Product>>();
             result.Should().HaveCount(1);
         }
+
         [Fact]
         public async void ProductsRepository_GetProductsPagedAsync_ReturnsFirstTwoProducts()
         {
@@ -140,6 +144,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(2);
             product.Should().NotBeNull();
         }
+
         [Fact]
         public async void ProductsRepository_GetProductsPagedAsync_ReturnsProductsSorted()
         {
@@ -162,6 +167,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             product.Should().NotBeNull();
             product.Id.Equals(new Guid("08754fc3-9fad-4081-a738-c608f8a95975"));
         }
+
         [Fact]
         public async void ProductsRepository_AddNewProductAsync_AddsNewProduct()
         {
@@ -193,6 +199,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(4);
             result.Should().BeOfType<List<Product>>();
         }
+
         [Fact]
         public async void ProductsRepository_UpdateProductAsync_UpdatesProduct()
         {
@@ -227,6 +234,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().BeOfType<List<Product>>();
             productAfterUpdate.Name.Equals("Chicken4");
         }
+
         [Fact]
         public async void ProducsRepository_DeleteProductAsync_DeletesProduct()
         {
@@ -247,6 +255,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(2);
             result.Should().BeOfType<List<Product>>();
         }
+
         [Fact]
         public async void ProductsRepository_CountProductsAsync_ReturnsCountOfProducts()
         {

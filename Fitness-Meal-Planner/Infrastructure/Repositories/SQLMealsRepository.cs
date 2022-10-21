@@ -16,14 +16,17 @@ namespace Infrastructure.Repositories
     public class SQLMealsRepository : IMealsRepository
     {
         private readonly FitnessPlannerContext _context;
+
         public SQLMealsRepository(FitnessPlannerContext context)
         {
             _context = context;
         }
+
         public IQueryable<Meal> GetAllMeals()
         {
             return _context.Meals.AsQueryable();
         }
+
         public async Task<IEnumerable<Meal>> GetMealsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {
             var meals = _context.Meals
@@ -42,32 +45,38 @@ namespace Infrastructure.Repositories
             else
                 return await meals.OrderByDescending(m => m.Name).ToListAsync();
         }
+
         public async Task<Meal> GetMealByIdAsync(Guid id)
         {
             return await _context.Meals.SingleOrDefaultAsync(x => x.Id == id);
         }
+
         public async Task AddMealAsync(Meal meal)
         {
             _context.Meals.Add(meal);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task UpdateMealAsync(Meal meal)
         {
             _context.Meals.Update(meal);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task DeleteMealAsync(Meal meal)
         {
             _context.Meals.Remove(meal);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task<int> CountMealsAsync()
         {
             return await _context.Meals.CountAsync();
         }
+
         private void SearchByName(ref IQueryable<Meal> meals, string nameOfMeal) 
         {
             if (!meals.Any() || string.IsNullOrWhiteSpace(nameOfMeal))

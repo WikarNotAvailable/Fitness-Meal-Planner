@@ -16,14 +16,17 @@ namespace Infrastructure.Repositories
     public class SQLProductsRepository : IProductsRepository
     {
         private readonly FitnessPlannerContext _context;
+
         public SQLProductsRepository(FitnessPlannerContext context)
         {
             _context = context;
         }
+
         public IQueryable<Product> GetAllProducts()
         {
             return _context.Products.AsQueryable();
         }
+
         public async Task<IEnumerable<Product>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSort)
         {
             var products = _context.Products
@@ -42,32 +45,38 @@ namespace Infrastructure.Repositories
             else
                 return await products.OrderByDescending(p => p.Name).ToListAsync();         
         }
+
         public async Task<Product> GetProductByIdAsync(Guid id)
         {
             return await _context.Products.SingleOrDefaultAsync(x => x.Id == id);
         }
+
         public async Task AddProductAsync(Product product)
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task UpdateProductAsync(Product product)
         {
             _context.Products.Update(product);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task DeleteProductAsync(Product product)
         {
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             await Task.CompletedTask;
         }
+
         public async Task<int> CountProductsAsync()
         {
             return await _context.Products.CountAsync();
         }
+
         private void SearchByName(ref IQueryable<Product> products, string nameOfProduct)
         {
             if (!products.Any() || string.IsNullOrWhiteSpace(nameOfProduct))

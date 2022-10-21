@@ -25,6 +25,7 @@ namespace WebAPI.Controllers
         private readonly IMealsService _mealsService;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<MealsController> _logger;
+
         public MealsController(IMealsService service, IWebHostEnvironment webHostEnvironment, ILogger<MealsController> logger)
         {
             _mealsService = service;
@@ -39,6 +40,7 @@ namespace WebAPI.Controllers
             _logger.LogInformation("Getting all meals from the database as queryable.");
              return Ok(_mealsService.GetAllMeals());
         }
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MealDto>>> GetPagedMeals([FromQuery] PaginationFilter paginationFilter,
@@ -64,6 +66,7 @@ namespace WebAPI.Controllers
 
             return Ok(PaginationHelper.CreatePagedResponse(meals, validPaginationFilter, totalRecords));
         }
+
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<MealDto>> GetMeal(Guid id)
@@ -80,6 +83,7 @@ namespace WebAPI.Controllers
 
             return Ok(new Response<MealDto>(meal));
         }
+
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddMeal([FromForm]CreateMealDto newMeal)
@@ -113,6 +117,7 @@ namespace WebAPI.Controllers
             }
            return Created($"/meals.{meal.Id}", new Response<MealDto>(meal));
         }
+
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateMeal([FromForm]UpdateMealDto updatedMeal, Guid id)

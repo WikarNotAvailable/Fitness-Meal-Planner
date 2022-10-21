@@ -73,6 +73,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             }
             return databaseContext;
         }
+
         [Fact]
         public async void MealsRepository_GetAllMeals_ReturnsMeals()
         {
@@ -87,6 +88,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().NotBeNull();
             result.Should().HaveCount(3);
         }
+
         [Fact]
         public async void MealsRepository_GetMealByID_ReturnsMeal()
         {
@@ -122,6 +124,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().BeOfType<List<Meal>>();
             result.Should().HaveCount(1);
         }
+
         [Fact]
         public async void MealsRepository_GetMealsPagedAsync_ReturnsFirstTwoMeals()
         {
@@ -143,6 +146,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(2);
             meal.Should().NotBeNull();
         }
+
         [Fact]
         public async void MealsRepository_GetMealsPagedAsync_ReturnsMealsSorted()
         {
@@ -165,6 +169,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             meal.Should().NotBeNull();
             meal.Id.Equals(new Guid("08754fc3-9fad-4081-a738-c608f8a95975"));
         }
+
         [Fact]
         public async void MealsRepository_AddNewMealAsync_AddsNewMeal()
         {
@@ -196,6 +201,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(4);
             result.Should().BeOfType<List<Meal>>();
         }
+
         [Fact]
         public async void MealsRepository_UpdateMealAsync_UpdatesMeal()
         {
@@ -230,6 +236,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().BeOfType<List<Meal>>();
             mealAfterUpdate.Name.Equals("Chicken4");
         }
+
         [Fact]
         public async void MealsRepository_DeleteMealAsync_DeletesMeal()
         {
@@ -250,6 +257,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             result.Should().HaveCount(2);
             result.Should().BeOfType<List<Meal>>();
         }
+
         [Fact]
         public async void MealsRepository_CountMealsAsync_ReturnsCountOfMeals()
         {

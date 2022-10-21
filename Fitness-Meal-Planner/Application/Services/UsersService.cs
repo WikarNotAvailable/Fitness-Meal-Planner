@@ -18,22 +18,26 @@ namespace Application.Services
         private readonly IUsersRepository _repository;
         private readonly IMapper _mapper;
         private readonly IValidator<User> _validator;
+
         public UsersService(IUsersRepository repository, IMapper mapper, IValidator<User> validator)
         {
             _repository = repository;
             _mapper = mapper;
             _validator = validator;
         }
+
         public async Task<UserDto> GetUserAsync(LoginDto userCredentials)
         {
             var user = await _repository.GetLoggingUserAsync(userCredentials.Username, userCredentials.Password);
             return _mapper.Map<UserDto>(user);
         }
+
         public async Task<UserDto> GetUserByUsernameAsync(string username)
         {
             var user = await _repository.GetUserByUsernameAsync(username);
             return _mapper.Map<UserDto>(user);
         }
+
         public async Task<UserDto> AddUserAsync(RegisterDto userDto)
         {
             var newUser = _mapper.Map<User>(userDto);
@@ -45,6 +49,7 @@ namespace Application.Services
             await _repository.AddUserAsync(newUser);
             return _mapper.Map<UserDto>(newUser);
         }
+
         public async Task<UserDto> ChangePasswordAsync(string _username, string _password)
         {
             var user = await _repository.GetUserByUsernameAsync(_username);
@@ -64,6 +69,7 @@ namespace Application.Services
             await _repository.UpdateUserAsync(newUser);
             return _mapper.Map<UserDto>(newUser);
         }
+
         public async Task<UserDto> ChangeEmailAsync(string _username, string _email)
         {
             var user = await _repository.GetUserByUsernameAsync(_username);
@@ -83,6 +89,7 @@ namespace Application.Services
             await _repository.UpdateUserAsync(newUser);
             return _mapper.Map<UserDto>(newUser);
         }
+
         public async Task DeleteUserAsync(string _username)
         {
             var user = await _repository.GetUserByUsernameAsync(_username);

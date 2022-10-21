@@ -26,6 +26,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             calledCount++;
         }
     }
+
     public class AuthenticationControllerTests
     {
         private readonly IUsersService _usersService;
@@ -40,6 +41,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             _config = A.Fake<IConfiguration>();
             _logger = new VerifiableUsersLogger();
         }
+
         [Fact]
         public async void AuthenticationController_Login_ReturnsOK()
         {
@@ -60,6 +62,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(OkObjectResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void AuthenticationController_Register_ReturnsCreated()
         {
@@ -80,6 +83,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(CreatedResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void AuthenticationController_ChangePassword_ReturnsCreatedAtAction()
         {
@@ -101,6 +105,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(CreatedAtActionResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void AuthenticationController_ChangeEmail_ReturnsCreatedAtAction()
         {
@@ -122,6 +127,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(CreatedAtActionResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void AuthenticationController_GetUser_ReturnsOK()
         {
@@ -140,6 +146,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(OkObjectResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void AuthenticationController_DeleteUser_ReturnsNoContent()
         {

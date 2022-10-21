@@ -73,3 +73,329 @@ SET NOCOUNT ON;
 UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
 WHERE [Id] = @p1;
 SELECT @@ROWCOUNT;
+[2022-10-21 21:51:28.138 +02:00  INF]  User profile is available. Using 'C:\Users\wikar\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-10-21 21:51:28.604 +02:00  INF]  Initializing UI Database
+[2022-10-21 21:51:30.074 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:30.854 +02:00  INF]  Executed DbCommand (79ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+[2022-10-21 21:51:31.060 +02:00  INF]  Executed DbCommand (152ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+[2022-10-21 21:51:31.121 +02:00  INF]  Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+[2022-10-21 21:51:31.667 +02:00  INF]  Executed DbCommand (68ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Configurations] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-10-21 21:51:31.724 +02:00  INF]  Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:32.049 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/swagger/index.html - -
+[2022-10-21 21:51:32.133 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:32.138 +02:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-10-21 21:51:32.138 +02:00  INF]  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:32.138 +02:00  INF]  Hosting environment: Development
+[2022-10-21 21:51:32.138 +02:00  INF]  Content root path: C:\Users\wikar\OneDrive\Pulpit\PROGRAMOWANIE\Fitness-Meal-Planner\Fitness-Meal-Planner\WebAPI\
+[2022-10-21 21:51:32.181 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:32.182 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:32.562 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:32.585 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 20.7663ms
+[2022-10-21 21:51:32.863 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/swagger/index.html - - - 200 - text/html;charset=utf-8 818.8060ms
+[2022-10-21 21:51:32.883 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:51:32.886 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/_framework/aspnetcore-browser-refresh.js - -
+[2022-10-21 21:51:32.894 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/_framework/aspnetcore-browser-refresh.js - - - 200 11982 application/javascript;+charset=utf-8 6.6974ms
+[2022-10-21 21:51:33.033 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/_vs/browserLink - -
+[2022-10-21 21:51:33.175 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 291.7551ms
+[2022-10-21 21:51:33.208 +02:00  INF]  Received HTTP response headers after 1021.837ms - 200
+[2022-10-21 21:51:33.210 +02:00  INF]  End processing HTTP request after 1037.148ms - 200
+[2022-10-21 21:51:33.237 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 203.1008ms
+[2022-10-21 21:51:33.375 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/swagger/v1/swagger.json - -
+[2022-10-21 21:51:33.652 +02:00  WRN]  Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+[2022-10-21 21:51:33.655 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 279.9973ms
+[2022-10-21 21:51:33.857 +02:00  INF]  Executed DbCommand (165ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:33.984 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:34.284 +02:00  INF]  Executed DbCommand (170ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:34.297 +02:00  INF]  Executed DbCommand (5ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:39.388 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:39.392 +02:00  INF]  Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:39.392 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:39.392 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:39.424 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:39.426 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 1.9273ms
+[2022-10-21 21:51:39.472 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:51:39.477 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 3.6844ms
+[2022-10-21 21:51:39.493 +02:00  INF]  Received HTTP response headers after 100.3479ms - 200
+[2022-10-21 21:51:39.493 +02:00  INF]  End processing HTTP request after 100.69ms - 200
+[2022-10-21 21:51:39.501 +02:00  INF]  Executed DbCommand (7ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:39.502 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:39.505 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:39.506 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:44.527 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:44.529 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:44.529 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:44.529 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:44.558 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:44.558 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 0.6168ms
+[2022-10-21 21:51:44.610 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:51:44.615 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 4.5853ms
+[2022-10-21 21:51:44.630 +02:00  INF]  Received HTTP response headers after 100.3943ms - 200
+[2022-10-21 21:51:44.630 +02:00  INF]  End processing HTTP request after 100.6336ms - 200
+[2022-10-21 21:51:44.633 +02:00  INF]  Executed DbCommand (3ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:44.635 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:44.636 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:44.637 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:48.394 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/meals/all - -
+[2022-10-21 21:51:48.411 +02:00  INF]  No cached response available for this request.
+[2022-10-21 21:51:48.423 +02:00  INF]  Executing endpoint 'WebAPI.Controllers.MealsController.GetAllMeals (WebAPI)'
+[2022-10-21 21:51:48.437 +02:00  INF]  Route matched with {action = "GetAllMeals", controller = "Meals"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Linq.IQueryable`1[Application.Dtos.MealDtos.MealDto]] GetAllMeals() on controller WebAPI.Controllers.MealsController (WebAPI).
+[2022-10-21 21:51:49.651 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:49.653 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:49.653 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:49.653 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:49.687 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:49.688 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 0.5670ms
+[2022-10-21 21:51:49.726 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:51:49.731 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 3.3220ms
+[2022-10-21 21:51:49.748 +02:00  INF]  Received HTTP response headers after 94.3196ms - 200
+[2022-10-21 21:51:49.748 +02:00  INF]  End processing HTTP request after 94.629ms - 200
+[2022-10-21 21:51:49.753 +02:00  INF]  Executed DbCommand (4ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:49.754 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:49.757 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:49.758 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:49.935 +02:00  INF]  Executing action method WebAPI.Controllers.MealsController.GetAllMeals (WebAPI) - Validation state: "Valid"
+[2022-10-21 21:51:49.936 +02:00  INF]  Getting all meals from the database as queryable.
+[2022-10-21 21:51:49.957 +02:00  WRN]  No store type was specified for the decimal property 'Calories' on entity type 'Meal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.957 +02:00  WRN]  No store type was specified for the decimal property 'Carbohydrates' on entity type 'Meal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.957 +02:00  WRN]  No store type was specified for the decimal property 'Fat' on entity type 'Meal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.957 +02:00  WRN]  No store type was specified for the decimal property 'Protein' on entity type 'Meal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.957 +02:00  WRN]  No store type was specified for the decimal property 'Calories' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.958 +02:00  WRN]  No store type was specified for the decimal property 'Carbohydrates' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.958 +02:00  WRN]  No store type was specified for the decimal property 'Fat' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.958 +02:00  WRN]  No store type was specified for the decimal property 'Protein' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2022-10-21 21:51:49.971 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'FitnessPlannerContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: None
+[2022-10-21 21:51:50.001 +02:00  INF]  Executed action method WebAPI.Controllers.MealsController.GetAllMeals (WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 60.1922ms.
+[2022-10-21 21:51:50.022 +02:00  INF]  Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[Application.Dtos.MealDtos.MealDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-10-21 21:51:50.083 +02:00  INF]  Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[Name], [m].[WeightInGrams], [m].[Calories], [m].[Protein], [m].[Carbohydrates], [m].[Fat], [m].[Ingredients], [m].[Recipe], [m].[MealPhotoPath]
+FROM [Meals] AS [m]
+[2022-10-21 21:51:50.124 +02:00  INF]  Executed action WebAPI.Controllers.MealsController.GetAllMeals (WebAPI) in 1681.7406ms
+[2022-10-21 21:51:50.125 +02:00  INF]  Executed endpoint 'WebAPI.Controllers.MealsController.GetAllMeals (WebAPI)'
+[2022-10-21 21:51:50.126 +02:00  INF]  The response could not be cached for this request.
+[2022-10-21 21:51:50.134 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/meals/all - - - 200 - application/json;+charset=utf-8 1740.0584ms
+[2022-10-21 21:51:54.771 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:54.772 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:54.773 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:54.773 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:54.805 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:54.806 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 0.5484ms
+[2022-10-21 21:51:54.839 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:51:54.842 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 2.0957ms
+[2022-10-21 21:51:54.859 +02:00  INF]  Received HTTP response headers after 86.0528ms - 200
+[2022-10-21 21:51:54.859 +02:00  INF]  End processing HTTP request after 86.2794ms - 200
+[2022-10-21 21:51:54.864 +02:00  INF]  Executed DbCommand (4ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:54.866 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:51:54.869 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:54.871 +02:00  INF]  Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:51:59.722 +02:00  INF]  Request starting HTTP/2 GET https://localhost:44300/meals/5c456482-2753-4556-8a25-53dd8a6d7994 - -
+[2022-10-21 21:51:59.722 +02:00  INF]  No cached response available for this request.
+[2022-10-21 21:51:59.723 +02:00  INF]  Executing endpoint 'WebAPI.Controllers.MealsController.GetMeal (WebAPI)'
+[2022-10-21 21:51:59.738 +02:00  INF]  Route matched with {action = "GetMeal", controller = "Meals"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.Dtos.MealDtos.MealDto]] GetMeal(System.Guid) on controller WebAPI.Controllers.MealsController (WebAPI).
+[2022-10-21 21:51:59.770 +02:00  INF]  Executing action method WebAPI.Controllers.MealsController.GetMeal (WebAPI) - Validation state: "Valid"
+[2022-10-21 21:51:59.771 +02:00  INF]  Getting the meal from the database by id.
+[2022-10-21 21:51:59.774 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'FitnessPlannerContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: None
+[2022-10-21 21:51:59.783 +02:00  INF]  Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [m].[Id], [m].[Calories], [m].[Carbohydrates], [m].[Created], [m].[CreatedBy], [m].[Fat], [m].[Ingredients], [m].[LastModified], [m].[LastModifiedBy], [m].[MealPhotoPath], [m].[Name], [m].[Protein], [m].[Recipe], [m].[WeightInGrams]
+FROM [Meals] AS [m]
+WHERE [m].[Id] = @__id_0
+[2022-10-21 21:51:59.834 +02:00  INF]  Executed action method WebAPI.Controllers.MealsController.GetMeal (WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 63.8765ms.
+[2022-10-21 21:51:59.837 +02:00  INF]  Executing OkObjectResult, writing value of type 'WebAPI.Wrappers.Response`1[[Application.Dtos.MealDtos.MealDto, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2022-10-21 21:51:59.838 +02:00  INF]  Executed action WebAPI.Controllers.MealsController.GetMeal (WebAPI) in 100.5754ms
+[2022-10-21 21:51:59.838 +02:00  INF]  Executed endpoint 'WebAPI.Controllers.MealsController.GetMeal (WebAPI)'
+[2022-10-21 21:51:59.838 +02:00  INF]  The response could not be cached for this request.
+[2022-10-21 21:51:59.839 +02:00  INF]  Request finished HTTP/2 GET https://localhost:44300/meals/5c456482-2753-4556-8a25-53dd8a6d7994 - - - 200 - application/json;+charset=utf-8 117.0531ms
+[2022-10-21 21:51:59.889 +02:00  INF]  Entity Framework Core 6.0.9 initialized 'HealthChecksDb' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.9' with options: MigrationsAssembly=HealthChecks.UI.SqlServer.Storage 
+[2022-10-21 21:51:59.891 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[DiscoveryService], [c].[Name], [c].[Uri]
+FROM [Configurations] AS [c]
+[2022-10-21 21:51:59.891 +02:00  INF]  Start processing HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:59.892 +02:00  INF]  Sending HTTP request GET "http://localhost:1362/healthUI"
+[2022-10-21 21:51:59.948 +02:00  INF]  Request starting HTTP/1.1 GET http://localhost:1362/healthUI - -
+[2022-10-21 21:51:59.968 +02:00  INF]  Request finished HTTP/1.1 GET http://localhost:1362/healthUI - - - 307 - - 0.7854ms
+[2022-10-21 21:51:59.991 +02:00  INF]  Request starting HTTP/1.1 GET https://localhost:44300/healthUI - -
+[2022-10-21 21:52:00.018 +02:00  INF]  Request finished HTTP/1.1 GET https://localhost:44300/healthUI - - - 200 - application/json 2.2868ms
+[2022-10-21 21:52:00.018 +02:00  INF]  Received HTTP response headers after 126.7548ms - 200
+[2022-10-21 21:52:00.019 +02:00  INF]  End processing HTTP request after 127.071ms - 200
+[2022-10-21 21:52:00.027 +02:00  INF]  Executed DbCommand (8ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:52:00.032 +02:00  INF]  Executed DbCommand (2ms) [Parameters=[@__configuration_Name_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[DiscoveryService], [t].[LastExecuted], [t].[Name], [t].[OnStateFrom], [t].[Status], [t].[Uri], [h].[Id], [h].[Description], [h].[HealthCheckExecutionId], [h].[Name], [h].[On], [h].[Status], [h0].[Id], [h0].[Description], [h0].[Duration], [h0].[HealthCheckExecutionId], [h0].[Name], [h0].[Status], [h0].[Tags]
+FROM (
+    SELECT TOP(2) [e].[Id], [e].[DiscoveryService], [e].[LastExecuted], [e].[Name], [e].[OnStateFrom], [e].[Status], [e].[Uri]
+    FROM [Executions] AS [e]
+    WHERE [e].[Name] = @__configuration_Name_0
+) AS [t]
+LEFT JOIN [HealthCheckExecutionHistories] AS [h] ON [t].[Id] = [h].[HealthCheckExecutionId]
+LEFT JOIN [HealthCheckExecutionEntries] AS [h0] ON [t].[Id] = [h0].[HealthCheckExecutionId]
+ORDER BY [t].[Id], [h].[Id]
+[2022-10-21 21:52:00.039 +02:00  INF]  Executed DbCommand (4ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Executions] SET [LastExecuted] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+[2022-10-21 21:52:00.042 +02:00  INF]  Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [HealthCheckExecutionEntries] SET [Duration] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;

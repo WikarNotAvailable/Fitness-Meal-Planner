@@ -21,22 +21,26 @@ namespace Application.Services
         private readonly IProductsRepository _repository;
         private readonly IMapper _mapper;
         private readonly IValidator<Product> _validator;
+
         public ProductsService(IProductsRepository repository, IMapper mapper, IValidator<Product> validator)
         {
             _repository = repository;
             _mapper = mapper;
             _validator = validator;
         }
+
         public IQueryable<ProductDto> GetAllProducts()
         {
             var products = _repository.GetAllProducts();
             return _mapper.ProjectTo<ProductDto>(products);
         }
+
         public async Task<IEnumerable<ProductDto>> GetProductsPagedAsync(int pageNumber, int pageSize, NutritionRange range, bool? ascendingSorting)
         {
             var products = await _repository.GetProductsPagedAsync(pageNumber, pageSize, range, ascendingSorting);
             return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
+
         public async Task<ProductDto> AddProductAsync(CreateProductDto newProduct, string productPhotoPath)
         {
             var product = _mapper.Map<Product>(newProduct);
@@ -69,15 +73,18 @@ namespace Application.Services
             await _repository.UpdateProductAsync(product);
             return _mapper.Map<ProductDto>(product);
         }
+
         public async Task DeleteProductAsync(Guid id)
         {
             var product = await _repository.GetProductByIdAsync(id);
             await _repository.DeleteProductAsync(product);
         }
+
         public async Task<int> CountProductsAsync()
         {
             return await _repository.CountProductsAsync();
         }
+
         public async Task<string> GetPathOfProductImage(Guid id)
         {
             var product = await _repository.GetProductByIdAsync(id);

@@ -52,6 +52,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             }
             return databaseContext;
         }
+
         [Fact]
         public async void UsersRepository_GetLoggingUserAsync_ReturnsUser()
         {
@@ -68,6 +69,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             user.Should().NotBeNull();
             user.Username.Equals("Name1");
         }
+
         [Fact]
         public async void UsersRepository_GetUserByUsernameAsync_ReturnsUser()
         {
@@ -83,6 +85,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             user.Should().NotBeNull();
             user.Username.Equals("Name1");
         }
+
         [Fact]
         public async void UsersRepository_AddUserAsync_AddsUser()
         {
@@ -104,6 +107,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             var user = await repository.GetUserByUsernameAsync("Name4");
             user.Should().NotBeNull();
         }
+
         [Fact]
         public async void UsersRepository_UpdateUserAsync_UpdatesUser()
         {
@@ -131,6 +135,7 @@ namespace Fitness_Meal_Planner_Testing.RepositoriesTests
             userCheck.Password.Equals("Password4");
             userCheck.EmailAddress.Equals("Email4@gmail.com");
         }
+
         [Fact]
         public async void UsersRepository_DeleteUserAsync_DeletesUser()
         {

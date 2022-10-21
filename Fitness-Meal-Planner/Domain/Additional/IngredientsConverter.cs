@@ -24,6 +24,7 @@ namespace Domain.Additional
             }
             return ingredients.Remove(ingredients.Length - 1);
         }
+
         public static List<Ingredient> stringToList(string ingredients) 
         {
             List<Ingredient> list = new List<Ingredient>();

@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Wrappers
 {
-    public class PagedResponse<T> : Response<T>
+    public class PagedResponse<T> : Response<T> where T : class
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

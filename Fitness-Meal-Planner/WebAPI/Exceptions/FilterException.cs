@@ -4,6 +4,7 @@
     {
         public FilterException(string message) : base(message) { }
     }
+
     public class InvalidFilterRangesException : FilterException
     {
         public InvalidFilterRangesException(string message) : base(message) { }

@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         private readonly ITokenService _tokenService;
         private readonly IConfiguration _config;
         private readonly ILogger<AuthenticationController> _logger;
+
         public AuthenticationController(IUsersService usersService, ITokenService tokenService, IConfiguration config, ILogger<AuthenticationController> logger)
         {
             _usersService = usersService;
@@ -25,6 +26,7 @@ namespace WebAPI.Controllers
             _config = config;
             _logger = logger;
         }
+
         [AllowAnonymous]
         [ResponseCache]
         [HttpPost("login")]
@@ -45,6 +47,7 @@ namespace WebAPI.Controllers
                 return Ok(new { token = tokenString });
             }
         }
+
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto userInfo)
@@ -68,6 +71,7 @@ namespace WebAPI.Controllers
             }
             return Created($"/register.{newUser.Username}", new Response<UserDto>(newUser));
         }
+
         [AllowAnonymous]
         [HttpPut("changePassword/{username}")]
         public async Task<ActionResult<UserDto>> ChangePassword(string username, string newPassword)
@@ -90,6 +94,7 @@ namespace WebAPI.Controllers
             }
             return CreatedAtAction($"changePassword", new Response<UserDto>(newUser));
         }
+
         [AllowAnonymous]
         [HttpPut("changeEmail/{username}")]
         public async Task<ActionResult<UserDto>> ChangeEmail(string username, string email)
@@ -112,6 +117,7 @@ namespace WebAPI.Controllers
             }
             return CreatedAtAction($"changeEmail", new Response<UserDto>(newUser));
         }
+
         [Authorize]
         [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { "username" })]
         [HttpGet("{username}")]
@@ -128,6 +134,7 @@ namespace WebAPI.Controllers
 
             return Ok(new Response<UserDto>(user));
         }
+
         [Authorize(Roles = "admin")]
         [HttpDelete("{username}")]
         public async Task<ActionResult> DeleteUser(string username)

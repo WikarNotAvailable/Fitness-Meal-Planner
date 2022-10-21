@@ -12,6 +12,7 @@
         public uint MinFat { get; set; }
         public uint MaxFat { get; set; } = 999;
         public string Name { get; set; } = "";
+
         public NutritionValuesFilter(uint minCalories, uint maxCalories, uint minProtein, uint maxProtein,
             uint minCarbohydrates, uint maxCarbohydrates, uint minFat, uint maxFat, string name)
         {
@@ -25,6 +26,7 @@
             MaxFat = maxFat;
             Name = name;
         }
+
         public NutritionValuesFilter() { }
 
         public bool ValidFilterValues()

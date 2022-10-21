@@ -28,6 +28,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             calledCount++;
         }
     }
+
     public class ProductsControllerTests
     {
         private readonly IProductsService _productsService;
@@ -58,6 +59,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(OkObjectResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void ProductsController_GetProduct_ReturnOK()
         {
@@ -76,6 +78,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(OkObjectResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void ProductsController_GetPagedProducts_ReturnOK()
         {
@@ -100,6 +103,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(OkObjectResult));
             _logger.calledCount.Equals(1);
         }
+
         [Fact]
         public async void ProductsController_AddProduct_ReturnCreated()
         {
@@ -119,6 +123,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType(typeof(CreatedResult));
             _logger.calledCount.Equals(2);
         }
+
         [Fact]
         public async void ProductsController_UpdateProduct_ReturnCreatedAtAction()
         {
@@ -140,6 +145,7 @@ namespace Fitness_Meal_Planner_Testing.ControllersTests
             result.Should().BeOfType<CreatedAtActionResult>();
             _logger.calledCount.Equals(2);
         }
+
         [Fact]
         public async void ProductsController_DeleteProduct_ReturnNoContent()
         {
