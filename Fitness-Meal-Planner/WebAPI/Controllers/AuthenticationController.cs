@@ -12,13 +12,13 @@ namespace WebAPI.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("auth")]
-    public class AunthenticationController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly IUsersService _usersService;
         private readonly ITokenService _tokenService;
         private readonly IConfiguration _config;
-        private readonly ILogger<AunthenticationController> _logger;
-        public AunthenticationController(IUsersService usersService, ITokenService tokenService, IConfiguration config, ILogger<AunthenticationController> logger)
+        private readonly ILogger<AuthenticationController> _logger;
+        public AuthenticationController(IUsersService usersService, ITokenService tokenService, IConfiguration config, ILogger<AuthenticationController> logger)
         {
             _usersService = usersService;
             _tokenService = tokenService;
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [ResponseCache]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginDto userLoginCredentials)
+        public async Task<ActionResult<string>> Login(LoginDto userLoginCredentials)
         {
             _logger.LogInformation("Login attempt.");
 
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         }
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDto userInfo)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto userInfo)
         {
 
             _logger.LogInformation("Register attempt.");
@@ -70,7 +70,7 @@ namespace WebAPI.Controllers
         }
         [AllowAnonymous]
         [HttpPut("changePassword/{username}")]
-        public async Task<IActionResult> ChangePassword(string username, string newPassword)
+        public async Task<ActionResult<UserDto>> ChangePassword(string username, string newPassword)
         {
             _logger.LogInformation($"Changing password of {username}.");
 
@@ -92,7 +92,7 @@ namespace WebAPI.Controllers
         }
         [AllowAnonymous]
         [HttpPut("changeEmail/{username}")]
-        public async Task<IActionResult> ChangeEmail(string username, string email)
+        public async Task<ActionResult<UserDto>> ChangeEmail(string username, string email)
         {
             _logger.LogInformation($"Changing email of {username}.");
 
@@ -115,7 +115,7 @@ namespace WebAPI.Controllers
         [Authorize]
         [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new string[] { "username" })]
         [HttpGet("{username}")]
-        public async Task<IActionResult> GetUser(string username)
+        public async Task<ActionResult<UserDto>> GetUser(string username)
         {
             _logger.LogInformation($"Getting user by username.");
 
@@ -130,7 +130,7 @@ namespace WebAPI.Controllers
         }
         [Authorize(Roles = "admin")]
         [HttpDelete("{username}")]
-        public async Task<IActionResult> DeleteUser(string username)
+        public async Task<ActionResult> DeleteUser(string username)
         {
             _logger.LogInformation($"Deleting user by username.");
 

@@ -26,7 +26,7 @@ namespace Application.Services
         }
         public async Task<UserDto> GetUserAsync(LoginDto userCredentials)
         {
-            var user = await _repository.GetUserAsync(userCredentials.Username, userCredentials.Password);
+            var user = await _repository.GetLoggingUserAsync(userCredentials.Username, userCredentials.Password);
             return _mapper.Map<UserDto>(user);
         }
         public async Task<UserDto> GetUserByUsernameAsync(string username)

@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<User> GetUserAsync(string username, string password)
+        public async Task<User> GetLoggingUserAsync(string username, string password)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }

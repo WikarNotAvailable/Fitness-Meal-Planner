@@ -198,6 +198,15 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Application\\Application.csproj"
+              },
+              "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\Infrastructure\\Infrastructure.csproj"
+              },
               "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\WebAPI\\WebAPI.csproj": {
                 "projectPath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\WebAPI\\WebAPI.csproj"
               }

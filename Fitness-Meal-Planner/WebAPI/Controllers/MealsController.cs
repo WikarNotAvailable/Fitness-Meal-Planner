@@ -34,10 +34,10 @@ namespace WebAPI.Controllers
 
         [HttpGet("all")]
         [EnableQuery]
-        public IQueryable<MealDto> GetAllMeals()
+        public ActionResult<IQueryable<MealDto>> GetAllMeals()
         {
             _logger.LogInformation("Getting all meals from the database as queryable.");
-            return _mealsService.GetAllMeals();
+             return Ok(_mealsService.GetAllMeals());
         }
         [AllowAnonymous]
         [HttpGet]
@@ -111,8 +111,7 @@ namespace WebAPI.Controllers
                 _logger.LogError("Adding meal has not succeedeed.");
                 throw new EntityValidatonException("The meal you are trying to add has invalid properties.");
             }
-
-            return Created($"/meals.{meal.Id}", new Response<MealDto>(meal));
+           return Created($"/meals.{meal.Id}", new Response<MealDto>(meal));
         }
         [Authorize]
         [HttpPut("{id}")]

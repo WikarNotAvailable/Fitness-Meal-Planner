@@ -33,10 +33,10 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [HttpGet("all")]
         [EnableQuery]
-        public IQueryable<ProductDto> GetAllProducts()
+        public ActionResult<IQueryable<ProductDto>> GetAllProducts()
         {
             _logger.LogInformation("Getting all products from the database as queryable.");
-            return _productsService.GetAllProducts();
+            return Ok(_productsService.GetAllProducts());
         }
         [AllowAnonymous]
         [HttpGet]

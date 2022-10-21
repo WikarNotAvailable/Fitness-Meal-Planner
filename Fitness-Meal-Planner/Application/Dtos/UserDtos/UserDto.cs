@@ -13,10 +13,5 @@ namespace Application.Dtos.UserDtos
         public string Username { get; init; }
         public string EmailAddress { get; init; }
         public string Role { get; init; }
-        UserDto() { }
-        UserDto(string username, string emailAddress, string role)
-        {
-            (Username, EmailAddress, Role) = (username, emailAddress, role);
-        }
     }
 }

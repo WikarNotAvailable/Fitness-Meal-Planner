@@ -27,7 +27,6 @@ namespace Domain.Entities
         public string Ingredients { get; set; } 
         public string Recipe { get; init; }
         public string MealPhotoPath { get; set; }
-        public Meal() { }
         public Meal(string name, int weightInGrams, decimal calories, decimal protein,
             decimal carbohydrates, decimal fat, List<Ingredient>?  ingredientsList, string recipe) 
         {
@@ -35,6 +34,10 @@ namespace Domain.Entities
             Ingredients = IngredientsConverter.listToString(ingredientsList);
             (Name, WeightInGrams, Calories, Protein, Carbohydrates, Fat, Recipe) = (name,
                 weightInGrams, calories, protein, carbohydrates, fat, recipe);
+        }
+
+       public Meal()
+        {
         }
     }
 }

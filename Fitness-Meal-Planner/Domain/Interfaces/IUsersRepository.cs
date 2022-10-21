@@ -10,7 +10,7 @@ namespace Domain.Interfaces
     //interface used for implementation of users' repository
     public interface IUsersRepository
     {
-        Task<User> GetUserAsync(string username, string password);
+        Task<User> GetLoggingUserAsync(string username, string password);
         Task<User> GetUserByUsernameAsync(string username);
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);

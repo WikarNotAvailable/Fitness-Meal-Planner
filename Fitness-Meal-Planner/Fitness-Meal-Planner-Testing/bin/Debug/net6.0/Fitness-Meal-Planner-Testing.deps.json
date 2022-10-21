@@ -8,8 +8,11 @@
     ".NETCoreApp,Version=v6.0": {
       "Fitness-Meal-Planner-Testing/1.0.0": {
         "dependencies": {
+          "Application": "1.0.0",
+          "Domain": "1.0.0",
           "FakeItEasy": "7.3.1",
           "FluentAssertions": "6.7.0",
+          "Infrastructure": "1.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
           "Microsoft.NET.Test.Sdk": "17.1.0",
           "WebAPI": "1.0.0",
