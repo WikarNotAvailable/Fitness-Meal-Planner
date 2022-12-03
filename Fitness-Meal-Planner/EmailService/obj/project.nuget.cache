@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "pRpdvf1HvT5mjaeYRem4VgVvtGjyKFb0aPQJe+OZmyQ9anR09Lj1oJxSE8I8fBBQ5OsQDrObOJEALtRAPbMnMw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wikar\\OneDrive\\Pulpit\\PROGRAMOWANIE\\Fitness-Meal-Planner\\Fitness-Meal-Planner\\EmailService\\EmailService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\wikar\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}
